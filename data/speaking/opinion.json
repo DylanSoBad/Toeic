@@ -1,0 +1,33 @@
+{
+  "type": 4,
+  "title": "Trả lời với ý kiến (Respond with Opinion)",
+  "description": "Đưa ra ý kiến về một chủ đề và giải thích lý do. Cần lập luận rõ ràng.",
+  "items": [
+    {
+      "id": "speaking-op-001",
+      "version": 1,
+      "skill": "speaking",
+      "part": 4,
+      "topic": "workplace",
+      "level": "advanced",
+      "text": "Do you agree or disagree that companies should allow employees to work from home? Give reasons for your opinion.\n\nThời gian chuẩn bị: 15 giây | Thời gian nói: 30 giây",
+      "translation": "Bạn đồng ý hay không đồng ý rằng công ty nên cho phép nhân viên làm việc tại nhà?",
+      "tips": "Cấu trúc: \"I agree/disagree because... First,... Second,... In conclusion,...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "speaking-op-002",
+      "version": 1,
+      "skill": "speaking",
+      "part": 4,
+      "topic": "management",
+      "level": "advanced",
+      "text": "Some people prefer to work in a team, while others prefer to work alone. Which do you prefer and why?\n\nThời gian chuẩn bị: 15 giây | Thời gian nói: 30 giây",
+      "translation": "Một số người thích làm việc nhóm, số khác thích làm một mình. Bạn thích cách nào?",
+      "tips": "Cấu trúc: \"I prefer working... because... For instance,... Moreover,...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

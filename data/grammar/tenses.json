@@ -1,0 +1,61 @@
+{
+  "topic": "tenses",
+  "title": "Các thì trong tiếng Anh (Tenses)",
+  "rules": [
+    {
+      "id": "gram-ten-001",
+      "title": "Hiện tại đơn (Simple Present)",
+      "formula": "S + V(s/es) + O",
+      "usage": "Diễn tả thói quen, sự thật hiển nhiên, lịch trình cố định.",
+      "examples": [
+        "She works at a bank. (Cô ấy làm việc tại ngân hàng.)",
+        "The train departs at 8 AM. (Tàu khởi hành lúc 8 giờ.)"
+      ],
+      "keywords": "always, usually, often, every, sometimes"
+    },
+    {
+      "id": "gram-ten-002",
+      "title": "Hiện tại tiếp diễn (Present Continuous)",
+      "formula": "S + am/is/are + V-ing + O",
+      "usage": "Diễn tả hành động đang xảy ra, kế hoạch tương lai gần.",
+      "examples": [
+        "I am reviewing the report right now.",
+        "We are meeting the client tomorrow."
+      ],
+      "keywords": "now, at the moment, currently, look!, listen!"
+    },
+    {
+      "id": "gram-ten-003",
+      "title": "Hiện tại hoàn thành (Present Perfect)",
+      "formula": "S + have/has + V3/ed + O",
+      "usage": "Hành động xảy ra trong quá khứ, kết quả liên quan hiện tại.",
+      "examples": [
+        "She has completed the project. (Cô ấy đã hoàn thành dự án.)",
+        "We have received 50 applications so far."
+      ],
+      "keywords": "already, just, never, ever, since, for, so far"
+    },
+    {
+      "id": "gram-ten-004",
+      "title": "Quá khứ đơn (Simple Past)",
+      "formula": "S + V2/ed + O",
+      "usage": "Hành động xảy ra và kết thúc trong quá khứ.",
+      "examples": [
+        "He attended the conference last week.",
+        "The company launched a new product in 2023."
+      ],
+      "keywords": "yesterday, last, ago, in 2020, when"
+    },
+    {
+      "id": "gram-ten-005",
+      "title": "Tương lai đơn (Simple Future)",
+      "formula": "S + will + V(bare) + O",
+      "usage": "Quyết định tức thì, dự đoán, lời hứa.",
+      "examples": [
+        "I will send you the document tomorrow.",
+        "The manager will review your proposal."
+      ],
+      "keywords": "tomorrow, next, soon, will"
+    }
+  ]
+}

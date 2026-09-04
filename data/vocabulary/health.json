@@ -1,0 +1,16 @@
+{
+  "topic": "health",
+  "title": "Sức khỏe (Health)",
+  "items": [
+    { "id": "vocab-hlt-001", "word": "diagnosis", "phonetic": "/ˌdaɪəɡˈnoʊsɪs/", "meaning": "Chẩn đoán", "example": "The doctor made a diagnosis after reviewing the test results." },
+    { "id": "vocab-hlt-002", "word": "prescription", "phonetic": "/prɪˈskrɪpʃən/", "meaning": "Đơn thuốc", "example": "The doctor wrote a prescription for antibiotics." },
+    { "id": "vocab-hlt-003", "word": "symptom", "phonetic": "/ˈsɪmptəm/", "meaning": "Triệu chứng", "example": "Common symptoms include fever and headache." },
+    { "id": "vocab-hlt-004", "word": "treatment", "phonetic": "/ˈtriːtmənt/", "meaning": "Phương pháp điều trị", "example": "The patient responded well to the treatment." },
+    { "id": "vocab-hlt-005", "word": "appointment", "phonetic": "/əˈpɔɪntmənt/", "meaning": "Cuộc hẹn (bác sĩ)", "example": "I have a dental appointment at 2 PM." },
+    { "id": "vocab-hlt-006", "word": "insurance", "phonetic": "/ɪnˈʃʊrəns/", "meaning": "Bảo hiểm", "example": "Health insurance covers most medical expenses." },
+    { "id": "vocab-hlt-007", "word": "pharmacy", "phonetic": "/ˈfɑːrməsi/", "meaning": "Nhà thuốc", "example": "You can pick up your medication at the pharmacy." },
+    { "id": "vocab-hlt-008", "word": "recovery", "phonetic": "/rɪˈkʌvəri/", "meaning": "Sự hồi phục", "example": "The patient made a full recovery within two weeks." },
+    { "id": "vocab-hlt-009", "word": "vaccination", "phonetic": "/ˌvæksɪˈneɪʃən/", "meaning": "Tiêm chủng", "example": "Vaccination is required before traveling to certain countries." },
+    { "id": "vocab-hlt-010", "word": "wellness", "phonetic": "/ˈwelnes/", "meaning": "Sức khỏe tổng thể", "example": "The company offers a wellness program for employees." }
+  ]
+}

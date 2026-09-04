@@ -1,0 +1,16 @@
+{
+  "topic": "office",
+  "title": "Văn phòng (Office)",
+  "items": [
+    { "id": "vocab-off-001", "word": "agenda", "phonetic": "/əˈdʒendə/", "meaning": "Chương trình nghị sự", "example": "The first item on the agenda is the budget review." },
+    { "id": "vocab-off-002", "word": "colleague", "phonetic": "/ˈkɒliːɡ/", "meaning": "Đồng nghiệp", "example": "My colleague and I presented the proposal together." },
+    { "id": "vocab-off-003", "word": "deadline", "phonetic": "/ˈdedlaɪn/", "meaning": "Hạn chót", "example": "The deadline for submitting reports is Friday." },
+    { "id": "vocab-off-004", "word": "memo", "phonetic": "/ˈmemoʊ/", "meaning": "Bản ghi nhớ", "example": "A memo was sent to all departments about the policy change." },
+    { "id": "vocab-off-005", "word": "promotion", "phonetic": "/prəˈmoʊʃən/", "meaning": "Thăng chức", "example": "She received a promotion to senior manager." },
+    { "id": "vocab-off-006", "word": "resignation", "phonetic": "/ˌrezɪɡˈneɪʃən/", "meaning": "Đơn từ chức", "example": "He submitted his resignation last week." },
+    { "id": "vocab-off-007", "word": "commute", "phonetic": "/kəˈmjuːt/", "meaning": "Di chuyển đi làm", "example": "I commute to work by train every day." },
+    { "id": "vocab-off-008", "word": "overtime", "phonetic": "/ˈoʊvərtaɪm/", "meaning": "Làm thêm giờ", "example": "Employees who work overtime receive extra pay." },
+    { "id": "vocab-off-009", "word": "reimbursement", "phonetic": "/rɪɪmˈbɜːrsmənt/", "meaning": "Khoản hoàn trả", "example": "Submit receipts for travel reimbursement by month-end." },
+    { "id": "vocab-off-010", "word": "supervisor", "phonetic": "/ˈsuːpərvaɪzər/", "meaning": "Người giám sát, quản lý", "example": "Your supervisor will review and approve your request." }
+  ]
+}

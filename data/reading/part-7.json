@@ -1,0 +1,67 @@
+{
+  "part": 7,
+  "title": "Part 7: Đọc hiểu (Reading Comprehension)",
+  "description": "Đọc đoạn văn và trả lời câu hỏi. Đoạn đơn (Part 7a) và đoạn kép (Part 7b). 54 câu hỏi.",
+  "items": [
+    {
+      "id": "reading-p7-001",
+      "version": 1,
+      "skill": "reading",
+      "part": 7,
+      "type": "multi-question",
+      "topic": "health",
+      "level": "intermediate",
+      "passage": "MEMO\n\nTo: All Staff\nFrom: Sarah Chen, HR Director\nDate: March 15\nSubject: Annual Health Check-Up\n\nWe are pleased to announce that the company's annual health check-up program will take place on April 10-12 at the City Medical Center, located at 450 Health Avenue.\n\nEmployees should schedule their appointment by calling 555-0123 or visiting our intranet page. Each session takes approximately 2 hours, and employees may attend during work hours without using vacation time.\n\nPlease note that fasting is required for 8 hours before blood tests. Water is permitted.\n\nFor questions, contact the HR department at ext. 4567.",
+      "questions": [
+        {
+          "id": "reading-p7-001-q1",
+          "q": "What is the purpose of the memo?",
+          "options": [
+            "To announce a holiday",
+            "To inform about a health check-up program",
+            "To request vacation applications"
+          ],
+          "correct": 1,
+          "explanation": "Mục đích thông báo về chương trình khám sức khỏe định kỳ (annual health check-up program)."
+        },
+        {
+          "id": "reading-p7-001-q2",
+          "q": "Where will the health check-up take place?",
+          "options": [
+            "At the company office",
+            "At the City Medical Center",
+            "At a local gym"
+          ],
+          "correct": 1,
+          "explanation": "Địa điểm là City Medical Center, located at 450 Health Avenue."
+        },
+        {
+          "id": "reading-p7-001-q3",
+          "q": "What must employees do before blood tests?",
+          "options": [
+            "Exercise for 1 hour",
+            "Fast for 8 hours",
+            "Call the HR department"
+          ],
+          "correct": 1,
+          "explanation": "\"fasting is required for 8 hours before blood tests\" = nhịn ăn 8 tiếng."
+        },
+        {
+          "id": "reading-p7-001-q4",
+          "q": "How can employees schedule their appointment?",
+          "options": [
+            "Only by email",
+            "By phone or intranet",
+            "By visiting in person only"
+          ],
+          "correct": 1,
+          "explanation": "\"calling 555-0123 or visiting our intranet page\" = qua điện thoại hoặc intranet."
+        }
+      ],
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

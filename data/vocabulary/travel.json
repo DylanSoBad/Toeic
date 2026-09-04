@@ -1,0 +1,16 @@
+{
+  "topic": "travel",
+  "title": "Du lịch (Travel)",
+  "items": [
+    { "id": "vocab-trv-001", "word": "itinerary", "phonetic": "/aɪˈtɪnəreri/", "meaning": "Lịch trình chuyến đi", "example": "Your travel itinerary includes flights and hotel bookings." },
+    { "id": "vocab-trv-002", "word": "accommodation", "phonetic": "/əˌkɒməˈdeɪʃən/", "meaning": "Chỗ ở", "example": "We booked accommodation near the conference center." },
+    { "id": "vocab-trv-003", "word": "departure", "phonetic": "/dɪˈpɑːrtʃər/", "meaning": "Sự khởi hành", "example": "The departure time has been changed to 3 PM." },
+    { "id": "vocab-trv-004", "word": "destination", "phonetic": "/ˌdestɪˈneɪʃən/", "meaning": "Điểm đến", "example": "Tokyo is a popular travel destination." },
+    { "id": "vocab-trv-005", "word": "reservation", "phonetic": "/ˌrezərˈveɪʃən/", "meaning": "Đặt trước", "example": "I made a reservation at the restaurant for 7 PM." },
+    { "id": "vocab-trv-006", "word": "boarding pass", "phonetic": "/ˈbɔːrdɪŋ pæs/", "meaning": "Thẻ lên máy bay", "example": "Please have your boarding pass ready at the gate." },
+    { "id": "vocab-trv-007", "word": "customs", "phonetic": "/ˈkʌstəmz/", "meaning": "Hải quan", "example": "You need to declare items at customs." },
+    { "id": "vocab-trv-008", "word": "excursion", "phonetic": "/ɪkˈskɜːrʒən/", "meaning": "Chuyến tham quan ngắn", "example": "The tour includes a day excursion to the ancient temple." },
+    { "id": "vocab-trv-009", "word": "luggage", "phonetic": "/ˈlʌɡɪdʒ/", "meaning": "Hành lý", "example": "Please collect your luggage from the baggage claim." },
+    { "id": "vocab-trv-010", "word": "visa", "phonetic": "/ˈviːzə/", "meaning": "Thị thực", "example": "You need a visa to enter most European countries." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": 3,
+  "title": "Viết bài luận (Q9)",
+  "description": "Viết bài luận tối thiểu 300 từ bày tỏ ý kiến về một chủ đề. Cần có lập luận và ví dụ.",
+  "items": [
+    {
+      "id": "writing-es-001",
+      "version": 1,
+      "skill": "writing",
+      "part": 3,
+      "topic": "technology",
+      "level": "advanced",
+      "topicText": "Some people believe that technology has made our lives more complex, while others think it has made them simpler. Discuss both views and give your own opinion.",
+      "tips": "Cấu trúc bài luận:\n1. Mở bài: Giới thiệu chủ đề + nêu ý kiến\n2. Thân bài 1: Quan điểm thứ nhất + ví dụ\n3. Thân bài 2: Quan điểm thứ hai + ví dụ\n4. Kết bài: Tóm tắt + khẳng định ý kiến",
+      "sample": "(Bài luận mẫu 300+ từ)\n\nIn today's rapidly evolving world, technology plays an increasingly significant role in our daily lives. While some argue that technological advancements have complicated our existence, others maintain that they have simplified it considerably. This essay will examine both perspectives before presenting my own view.\n\nOn the one hand, critics of technology point out that constantly being connected can cause cognitive overload and heightened stress levels...\n\nOn the other hand, proponents argue that digital tools streamline administrative burdens, automate repetitive tasks, and facilitate instant communication across borders...\n\nIn conclusion, while technology presents certain challenges, I believe its benefits far outweigh the drawbacks when utilized mindfully.",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

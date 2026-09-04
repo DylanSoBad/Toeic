@@ -1,0 +1,50 @@
+{
+  "topic": "relative",
+  "title": "Mệnh đề quan hệ (Relative Clauses)",
+  "rules": [
+    {
+      "id": "gram-rel-001",
+      "title": "Who — chỉ người (chủ ngữ)",
+      "formula": "N (person) + who + V + ...",
+      "usage": "Thay thế cho danh từ chỉ người, làm chủ ngữ.",
+      "examples": [
+        "The manager who approved the request is on leave.",
+        "Employees who work overtime receive extra pay."
+      ],
+      "keywords": "who = người mà (làm chủ ngữ)"
+    },
+    {
+      "id": "gram-rel-002",
+      "title": "Whom — chỉ người (tân ngữ)",
+      "formula": "N (person) + whom + S + V + ...",
+      "usage": "Thay thế cho danh từ chỉ người, làm tân ngữ.",
+      "examples": [
+        "The candidate whom we interviewed yesterday was excellent.",
+        "The client whom you met last week called again."
+      ],
+      "keywords": "whom = người mà (làm tân ngữ)"
+    },
+    {
+      "id": "gram-rel-003",
+      "title": "Which — chỉ vật",
+      "formula": "N (thing) + which + V/S + V + ...",
+      "usage": "Thay thế cho danh từ chỉ vật.",
+      "examples": [
+        "The package which arrived this morning is yours.",
+        "The system which we installed last month is efficient."
+      ],
+      "keywords": "which = cái mà, vật mà"
+    },
+    {
+      "id": "gram-rel-004",
+      "title": "Where — chỉ nơi chốn",
+      "formula": "N (place) + where + S + V + ...",
+      "usage": "Thay thế cho danh từ chỉ nơi chốn.",
+      "examples": [
+        "The office where I work is downtown.",
+        "This is the factory where the products are made."
+      ],
+      "keywords": "where = nơi mà"
+    }
+  ]
+}

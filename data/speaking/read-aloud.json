@@ -1,0 +1,33 @@
+{
+  "type": 1,
+  "title": "Đọc to (Read Aloud)",
+  "description": "Đọc to đoạn văn bản. Chú ý phát âm, ngữ điệu và nhịp điệu.",
+  "items": [
+    {
+      "id": "speaking-ra-001",
+      "version": 1,
+      "skill": "speaking",
+      "part": 1,
+      "topic": "business",
+      "level": "intermediate",
+      "text": "Good morning, ladies and gentlemen. Welcome to the annual shareholders meeting of Greenfield Corporation. Before we begin, I would like to remind everyone to silence their mobile devices. The agenda for today includes a review of last year's financial performance, an overview of our strategic plans for the upcoming year, and a question-and-answer session.",
+      "translation": "Chào buổi sáng, quý vị. Chào mừng đến cuộc họp cổ đông thường niên của Tập đoàn Greenfield. Trước khi bắt đầu, xin nhắc mọi người tắt chuông điện thoại. Chương trình hôm nay gồm: xem xét kết quả tài chính năm qua, tổng quan kế hoạch chiến lược năm tới, và phần hỏi đáp.",
+      "tips": "Ngắt nghỉ đúng sau dấu phẩy và dấu chấm. Nhấn mạnh các từ khóa: annual, shareholders, strategic, financial.",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "speaking-ra-002",
+      "version": 1,
+      "skill": "speaking",
+      "part": 1,
+      "topic": "office",
+      "level": "intermediate",
+      "text": "The new employee orientation will take place on Monday at 9 AM in Conference Room B. All new hires should bring their identification documents and complete the registration form beforehand. The session will cover company policies, benefits overview, and an introduction to each department.",
+      "translation": "Buổi hướng dẫn nhân viên mới sẽ diễn ra lúc 9 giờ sáng thứ Hai tại Phòng họp B. Tất cả nhân viên mới mang theo giấy tờ tùy thân và điền form đăng ký trước. Buổi họp sẽ bao gồm chính sách công ty, tổng quan phúc lợi, và giới thiệu từng phòng ban.",
+      "tips": "Phát âm rõ ràng các đuôi -tion (orientation, identification, introduction).",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

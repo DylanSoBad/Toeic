@@ -1,0 +1,59 @@
+{
+  "part": 4,
+  "title": "Part 4: Bài nói ngắn (Short Talks)",
+  "description": "Nghe một bài nói ngắn (thông báo, quảng cáo...) và trả lời 3 câu hỏi. 30 câu hỏi.",
+  "items": [
+    {
+      "id": "listening-p4-001",
+      "version": 1,
+      "skill": "listening",
+      "part": 4,
+      "type": "multi-question",
+      "topic": "travel",
+      "level": "intermediate",
+      "audio": "Good morning, everyone. This is an announcement for all passengers on Flight 247 to Tokyo. Due to unexpected weather conditions, our departure has been delayed by approximately two hours. The new departure time is 3:45 PM. We apologize for the inconvenience. Passengers who wish to have a meal voucher may collect one at Gate 12. Thank you for your understanding.",
+      "audioUrl": null,
+      "transcript": "Good morning, everyone. This is an announcement for all passengers on Flight 247 to Tokyo. Due to unexpected weather conditions, our departure has been delayed by approximately two hours. The new departure time is 3:45 PM. We apologize for the inconvenience. Passengers who wish to have a meal voucher may collect one at Gate 12. Thank you for your understanding.",
+      "explanation": "Thông báo chuyến bay bị hoãn 2 tiếng do thời tiết. Giờ khởi hành mới: 3:45 PM. Hành khách có thể nhận phiếu ăn tại Gate 12.",
+      "questions": [
+        {
+          "id": "listening-p4-001-q1",
+          "q": "What is the purpose of the announcement?",
+          "options": [
+            "To welcome passengers",
+            "To inform about a delay",
+            "To announce a cancellation"
+          ],
+          "correct": 1,
+          "explanation": "Mục đích thông báo là thông tin về việc chuyến bay bị hoãn (delayed by 2 hours)."
+        },
+        {
+          "id": "listening-p4-001-q2",
+          "q": "What is the new departure time?",
+          "options": [
+            "1:45 PM",
+            "2:45 PM",
+            "3:45 PM"
+          ],
+          "correct": 2,
+          "explanation": "\"The new departure time is 3:45 PM\"."
+        },
+        {
+          "id": "listening-p4-001-q3",
+          "q": "What can passengers get at Gate 12?",
+          "options": [
+            "A refund",
+            "A meal voucher",
+            "A hotel booking"
+          ],
+          "correct": 1,
+          "explanation": "\"Passengers who wish to have a meal voucher may collect one at Gate 12\"."
+        }
+      ],
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

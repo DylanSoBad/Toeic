@@ -1,0 +1,50 @@
+{
+  "topic": "passive",
+  "title": "Câu bị động (Passive Voice)",
+  "rules": [
+    {
+      "id": "gram-pas-001",
+      "title": "Bị động cơ bản",
+      "formula": "S + be + V3/ed + (by O)",
+      "usage": "Khi chủ ngữ là đối tượng bị tác động. Rất phổ biến trong TOEIC.",
+      "examples": [
+        "The report was written by the team. (Báo cáo được viết bởi nhóm.)",
+        "All products are inspected before shipping."
+      ],
+      "keywords": "is/are/am/was/were/been/being + V3"
+    },
+    {
+      "id": "gram-pas-002",
+      "title": "Bị động với thì hiện tại đơn",
+      "formula": "S + am/is/are + V3/ed",
+      "usage": "Sự thật, quy trình, chính sách.",
+      "examples": [
+        "English is spoken in many countries.",
+        "Applications are accepted until March 31."
+      ],
+      "keywords": "is/are + V3"
+    },
+    {
+      "id": "gram-pas-003",
+      "title": "Bị động với thì quá khứ đơn",
+      "formula": "S + was/were + V3/ed",
+      "usage": "Hành động bị động trong quá khứ.",
+      "examples": [
+        "The building was constructed in 1990.",
+        "The meeting was postponed last Friday."
+      ],
+      "keywords": "was/were + V3"
+    },
+    {
+      "id": "gram-pas-004",
+      "title": "Bị động với thì hiện tại hoàn thành",
+      "formula": "S + have/has + been + V3/ed",
+      "usage": "Hành động bị động, kết quả liên quan hiện tại.",
+      "examples": [
+        "The new policy has been implemented.",
+        "All orders have been processed."
+      ],
+      "keywords": "have/has been + V3"
+    }
+  ]
+}

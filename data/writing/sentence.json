@@ -1,0 +1,33 @@
+{
+  "type": 1,
+  "title": "Viết câu dựa trên gợi ý (Q6-7)",
+  "description": "Viết câu hoàn chỉnh dựa trên từ gợi ý và hình ảnh mô tả.",
+  "items": [
+    {
+      "id": "writing-st-001",
+      "version": 1,
+      "skill": "writing",
+      "part": 1,
+      "topic": "daily-life",
+      "level": "beginner",
+      "hint": "Hình ảnh: Một biển báo \"No Parking\" trên đường phố.\nTừ gợi ý: not / park / street / between / 8 AM / 6 PM",
+      "sample": "Vehicles are not allowed to park on this street between 8 AM and 6 PM.",
+      "translation": "Xe không được phép đậu trên đường này từ 8 giờ sáng đến 6 giờ tối.",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "writing-st-002",
+      "version": 1,
+      "skill": "writing",
+      "part": 1,
+      "topic": "office",
+      "level": "intermediate",
+      "hint": "Hình ảnh: Một nhân viên đang gửi email.\nTừ gợi ý: all / employees / must / submit / report / before / Friday",
+      "sample": "All employees must submit their reports before the end of the day on Friday.",
+      "translation": "Tất cả nhân viên phải nộp báo cáo trước cuối ngày thứ Sáu.",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

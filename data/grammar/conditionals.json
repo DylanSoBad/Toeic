@@ -1,0 +1,50 @@
+{
+  "topic": "condition",
+  "title": "Câu điều kiện (Conditionals)",
+  "rules": [
+    {
+      "id": "gram-cnd-001",
+      "title": "Loại 0 — Sự thật hiển nhiên",
+      "formula": "If + S + V(s/es), S + V(s/es)",
+      "usage": "Diễn tả sự thật, quy luật tự nhiên.",
+      "examples": [
+        "If you heat water to 100°C, it boils.",
+        "If employees arrive late, they must sign the log."
+      ],
+      "keywords": "If + present, present"
+    },
+    {
+      "id": "gram-cnd-002",
+      "title": "Loại 1 — Có thể xảy ra",
+      "formula": "If + S + V(s/es), S + will + V(bare)",
+      "usage": "Điều kiện có thể xảy ra trong tương lai.",
+      "examples": [
+        "If it rains tomorrow, the event will be canceled.",
+        "If you submit the report on time, you will receive a bonus."
+      ],
+      "keywords": "If + present, will + V"
+    },
+    {
+      "id": "gram-cnd-003",
+      "title": "Loại 2 — Không có thật ở hiện tại",
+      "formula": "If + S + V2/ed, S + would + V(bare)",
+      "usage": "Điều kiện không có thật hoặc khó xảy ra ở hiện tại.",
+      "examples": [
+        "If I were the manager, I would increase the budget.",
+        "If we had more staff, we could handle more orders."
+      ],
+      "keywords": "If + past, would + V"
+    },
+    {
+      "id": "gram-cnd-004",
+      "title": "Loại 3 — Không có thật trong quá khứ",
+      "formula": "If + S + had + V3, S + would have + V3",
+      "usage": "Điều kiện không có thật trong quá khứ, diễn tả sự tiếc nuối.",
+      "examples": [
+        "If I had studied harder, I would have passed the exam.",
+        "If the company had invested earlier, it would have grown faster."
+      ],
+      "keywords": "If + had V3, would have V3"
+    }
+  ]
+}

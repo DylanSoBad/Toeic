@@ -1,0 +1,16 @@
+{
+  "topic": "finance",
+  "title": "Tài chính (Finance)",
+  "items": [
+    { "id": "vocab-fin-001", "word": "budget", "phonetic": "/ˈbʌdʒɪt/", "meaning": "Ngân sách", "example": "The annual budget was approved by the board." },
+    { "id": "vocab-fin-002", "word": "invoice", "phonetic": "/ˈɪnvɔɪs/", "meaning": "Hóa đơn", "example": "Please send the invoice to the accounting department." },
+    { "id": "vocab-fin-003", "word": "investment", "phonetic": "/ɪnˈvestmənt/", "meaning": "Khoản đầu tư", "example": "The investment in new technology paid off quickly." },
+    { "id": "vocab-fin-004", "word": "liability", "phonetic": "/ˌlaɪəˈbɪləti/", "meaning": "Khoản nợ, trách nhiệm", "example": "The company's liabilities exceeded its assets." },
+    { "id": "vocab-fin-005", "word": "audit", "phonetic": "/ˈɔːdɪt/", "meaning": "Kiểm toán", "example": "The annual audit revealed no irregularities." },
+    { "id": "vocab-fin-006", "word": "expenditure", "phonetic": "/ɪkˈspendɪtʃər/", "meaning": "Chi tiêu", "example": "Government expenditure on education has increased." },
+    { "id": "vocab-fin-007", "word": "quarterly", "phonetic": "/ˈkwɔːrtərli/", "meaning": "Hàng quý", "example": "The quarterly report shows steady growth." },
+    { "id": "vocab-fin-008", "word": "shareholder", "phonetic": "/ˈʃeəhoʊldər/", "meaning": "Cổ đông", "example": "Shareholders voted to approve the merger." },
+    { "id": "vocab-fin-009", "word": "transaction", "phonetic": "/trænˈzækʃən/", "meaning": "Giao dịch", "example": "All transactions are recorded in the system." },
+    { "id": "vocab-fin-010", "word": "withdrawal", "phonetic": "/wɪðˈdrɔːəl/", "meaning": "Rút tiền", "example": "There is a daily limit on ATM withdrawals." }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "part": 3,
+  "title": "Part 3: Hội thoại ngắn (Short Conversations)",
+  "description": "Nghe một đoạn hội thoại ngắn giữa 2 người và trả lời 3 câu hỏi. 39 câu hỏi.",
+  "items": [
+    {
+      "id": "listening-p3-001",
+      "version": 1,
+      "skill": "listening",
+      "part": 3,
+      "type": "multi-question",
+      "topic": "office",
+      "level": "intermediate",
+      "audio": "W: Hi David, have you seen the new office schedule?\nM: Not yet. When does it take effect?\nW: Starting next Monday. We'll have different hours.\nM: What are the new hours?\nW: We start at 8 instead of 9, but we finish an hour earlier too.",
+      "audioUrl": null,
+      "transcript": "W: Hi David, have you seen the new office schedule?\nM: Not yet. When does it take effect?\nW: Starting next Monday. We'll have different hours.\nM: What are the new hours?\nW: We start at 8 instead of 9, but we finish an hour earlier too.",
+      "explanation": "Hội thoại về lịch làm việc mới: bắt đầu lúc 8 thay vì 9, nhưng cũng kết thúc sớm hơn 1 tiếng.",
+      "questions": [
+        {
+          "id": "listening-p3-001-q1",
+          "q": "What are the speakers discussing?",
+          "options": [
+            "A vacation plan",
+            "A new work schedule",
+            "An office renovation"
+          ],
+          "correct": 1,
+          "explanation": "Người nói thảo luận về lịch làm việc mới (office schedule)."
+        },
+        {
+          "id": "listening-p3-001-q2",
+          "q": "When does the change take effect?",
+          "options": [
+            "Today",
+            "Next Monday",
+            "Next month"
+          ],
+          "correct": 1,
+          "explanation": "Người phụ nữ nói: \"Starting next Monday\"."
+        },
+        {
+          "id": "listening-p3-001-q3",
+          "q": "What will change about the work hours?",
+          "options": [
+            "They start earlier and end earlier",
+            "They start later",
+            "They work longer hours"
+          ],
+          "correct": 0,
+          "explanation": "\"We start at 8 instead of 9, but we finish an hour earlier too\" = Bắt đầu sớm hơn và kết thúc sớm hơn."
+        }
+      ],
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

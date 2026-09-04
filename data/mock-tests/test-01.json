@@ -1,0 +1,291 @@
+{
+  "id": "mock-test-01",
+  "version": 1,
+  "title": "Đề thi thử TOEIC #1 (Đề rút gọn 20 câu)",
+  "durationMinutes": 25,
+  "description": "Đề thi thử rút gọn gồm 20 câu hỏi (10 Listening + 10 Reading) chuẩn hóa theo định dạng TOEIC.",
+  "items": [
+    {
+      "id": "mock-01-l01",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "The man is reviewing documents at his desk.",
+      "transcript": "The man is reviewing documents at his desk.",
+      "options": [
+        "A man is sleeping.",
+        "A man is reviewing documents.",
+        "A man is cooking.",
+        "A man is leaving the office."
+      ],
+      "correct": 1,
+      "explanation": "\"Reviewing documents at his desk\" = Đang xem xét tài liệu tại bàn."
+    },
+    {
+      "id": "mock-01-l02",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "What time is the appointment?",
+      "transcript": "What time is the appointment?",
+      "options": [
+        "At the hospital.",
+        "At 3:30 PM.",
+        "Yes, at 3."
+      ],
+      "correct": 1,
+      "explanation": "\"What time\" hỏi giờ → \"At 3:30 PM.\""
+    },
+    {
+      "id": "mock-01-l03",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "Has the new software been installed yet?",
+      "transcript": "Has the new software been installed yet?",
+      "options": [
+        "The software is new.",
+        "No, the IT department is still working on it.",
+        "Yes, I have."
+      ],
+      "correct": 1,
+      "explanation": "\"Has...been installed\" → câu trả lời phù hợp: \"No, the IT department is still working on it.\""
+    },
+    {
+      "id": "mock-01-l04",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "Could you please send me the meeting minutes?",
+      "transcript": "Could you please send me the meeting minutes?",
+      "options": [
+        "I don't have minutes.",
+        "Sure, I'll email them to you right away.",
+        "The meeting was long."
+      ],
+      "correct": 1,
+      "explanation": "\"Could you...\" là yêu cầu → \"Sure, I'll email them...\" là trả lời phù hợp."
+    },
+    {
+      "id": "mock-01-l05",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "Where should I leave these signed contracts?",
+      "transcript": "Where should I leave these signed contracts?",
+      "options": [
+        "On Ms. Davis's desk, please.",
+        "Yes, I signed them.",
+        "At 5:00 PM."
+      ],
+      "correct": 0,
+      "explanation": "\"Where\" hỏi nơi chốn → \"On Ms. Davis's desk, please.\""
+    },
+    {
+      "id": "mock-01-l06",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "Why didn't you attend the marketing workshop yesterday?",
+      "transcript": "Why didn't you attend the marketing workshop yesterday?",
+      "options": [
+        "It was in room 402.",
+        "I had an urgent client call.",
+        "Yes, it was interesting."
+      ],
+      "correct": 1,
+      "explanation": "\"Why\" hỏi lý do → \"I had an urgent client call.\""
+    },
+    {
+      "id": "mock-01-l07",
+      "skill": "listening",
+      "type": "single-choice",
+      "audio": "Could you check if the conference projector is working?",
+      "transcript": "Could you check if the conference projector is working?",
+      "options": [
+        "Sure, I'll test it right now.",
+        "The projector is expensive.",
+        "No, tomorrow morning."
+      ],
+      "correct": 0,
+      "explanation": "\"Could you check...\" yêu cầu lịch sự → \"Sure, I'll test it right now.\""
+    },
+    {
+      "id": "mock-01-l08",
+      "skill": "listening",
+      "type": "multi-question",
+      "audio": "Attention all passengers on train 104 to Chicago. Due to maintenance work on the main track, our departure will be delayed by 30 minutes. We expect to begin boarding at platform 4 at 10:15 AM. Complimentary coffee and bottled water are available at the customer lounge near ticket counter B.",
+      "transcript": "Attention all passengers on train 104 to Chicago. Due to maintenance work on the main track, our departure will be delayed by 30 minutes. We expect to begin boarding at platform 4 at 10:15 AM. Complimentary coffee and bottled water are available at the customer lounge near ticket counter B.",
+      "explanation": "Thông báo hoãn tàu do bảo trì đường ray, khởi hành lúc 10:15 AM, nước uống miễn phí tại lounge cạnh quầy vé B.",
+      "questions": [
+        {
+          "id": "mock-01-l08-q1",
+          "q": "What is the reason for the delay?",
+          "options": [
+            "Severe weather",
+            "Track maintenance work",
+            "Staff shortage"
+          ],
+          "correct": 1,
+          "explanation": "\"Due to maintenance work on the main track\"."
+        },
+        {
+          "id": "mock-01-l08-q2",
+          "q": "What time will boarding begin?",
+          "options": [
+            "9:45 AM",
+            "10:15 AM",
+            "10:45 AM"
+          ],
+          "correct": 1,
+          "explanation": "\"begin boarding at platform 4 at 10:15 AM\"."
+        },
+        {
+          "id": "mock-01-l08-q3",
+          "q": "What is provided for free at the customer lounge?",
+          "options": [
+            "Coffee and water",
+            "Full lunch meals",
+            "Discount train vouchers"
+          ],
+          "correct": 0,
+          "explanation": "\"Complimentary coffee and bottled water are available\"."
+        }
+      ]
+    },
+    {
+      "id": "mock-01-r01",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "The board of directors _____ the proposal unanimously at yesterday's meeting.",
+      "options": [
+        "approved",
+        "approving",
+        "approves",
+        "approval"
+      ],
+      "correct": 0,
+      "explanation": "Cần động từ quá khứ đơn (yesterday's meeting). \"approved\" là V2/ed."
+    },
+    {
+      "id": "mock-01-r02",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "Employees are required to wear _____ at all times in the laboratory.",
+      "options": [
+        "protect",
+        "protection",
+        "protective",
+        "protectively"
+      ],
+      "correct": 1,
+      "explanation": "Sau \"wear\" cần danh từ. \"protection\" = sự bảo vệ (protective equipment)."
+    },
+    {
+      "id": "mock-01-r03",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "The factory, _____ was built in 2015, has been expanded twice since then.",
+      "options": [
+        "who",
+        "which",
+        "where",
+        "whose"
+      ],
+      "correct": 1,
+      "explanation": "\"which\" thay thế cho \"the factory\" (vật) trong mệnh đề quan hệ không xác định."
+    },
+    {
+      "id": "mock-01-r04",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "If the supplier _____ the materials on time, we would have met the deadline.",
+      "options": [
+        "delivers",
+        "delivered",
+        "had delivered",
+        "would deliver"
+      ],
+      "correct": 2,
+      "explanation": "Câu điều kiện loại 3: If + had V3, would have V3. \"had delivered\" là đáp án đúng."
+    },
+    {
+      "id": "mock-01-r05",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "The seminar has been _____ until next Wednesday due to the speaker's illness.",
+      "options": [
+        "postponed",
+        "canceled",
+        "arranged",
+        "organized"
+      ],
+      "correct": 0,
+      "explanation": "\"postponed until\" = hoãn lại đến. \"Canceled\" không đi với \"until\" trong ngữ cảnh này."
+    },
+    {
+      "id": "mock-01-r06",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "The newly hired accountant has shown remarkable _____ in financial forecasting.",
+      "options": [
+        "competence",
+        "competent",
+        "competently",
+        "compete"
+      ],
+      "correct": 0,
+      "explanation": "Sau tính từ \"remarkable\" cần một danh từ: \"competence\" (năng lực)."
+    },
+    {
+      "id": "mock-01-r07",
+      "skill": "reading",
+      "type": "single-choice",
+      "q": "Mr. Harrison _____ the contract only after his legal advisor reviewed each clause.",
+      "options": [
+        "signed",
+        "signing",
+        "signature",
+        "signs"
+      ],
+      "correct": 0,
+      "explanation": "Mệnh đề quá khứ (\"reviewed\") cần động từ quá khứ đơn: \"signed\"."
+    },
+    {
+      "id": "mock-01-r08",
+      "skill": "reading",
+      "type": "multi-question",
+      "passage": "NOTICE\n\nTo: All Department Heads\nFrom: Office of the CEO\nDate: June 1\n\nStarting July 1, all purchase orders above $5,000 must be approved by the Finance Director before processing. This policy applies to all departments without exception. Department heads are responsible for communicating this change to their teams.\n\nFor questions, contact the Finance Department at ext. 3200.",
+      "explanation": "Thông báo về quy trình phê duyệt đơn mua hàng trên $5,000 phải được Finance Director duyệt. Department heads chịu trách nhiệm thông báo cho nhóm.",
+      "questions": [
+        {
+          "id": "mock-01-r08-q1",
+          "q": "What is the notice about?",
+          "options": [
+            "A new hiring policy",
+            "A new approval process for purchases",
+            "A change in office hours"
+          ],
+          "correct": 1,
+          "explanation": "Nội dung là quy trình phê duyệt mua sắm mới (\"approval process for purchases\")."
+        },
+        {
+          "id": "mock-01-r08-q2",
+          "q": "What amount requires Finance Director approval?",
+          "options": [
+            "Above $1,000",
+            "Above $5,000",
+            "Above $10,000"
+          ],
+          "correct": 1,
+          "explanation": "\"all purchase orders above $5,000 must be approved by the Finance Director\"."
+        },
+        {
+          "id": "mock-01-r08-q3",
+          "q": "Who must inform their teams about this change?",
+          "options": [
+            "The CEO",
+            "The Finance Director",
+            "Department heads"
+          ],
+          "correct": 2,
+          "explanation": "\"Department heads are responsible for communicating this change to their teams\"."
+        }
+      ]
+    }
+  ]
+}

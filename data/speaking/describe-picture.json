@@ -1,0 +1,33 @@
+{
+  "type": 2,
+  "title": "Mô tả tranh (Describe a Picture)",
+  "description": "Mô tả những gì bạn thấy trong một bức tranh tưởng tượng. Sử dụng ngôn ngữ mô tả chi tiết.",
+  "items": [
+    {
+      "id": "speaking-dp-001",
+      "version": 1,
+      "skill": "speaking",
+      "part": 2,
+      "topic": "office",
+      "level": "intermediate",
+      "text": "Hãy mô tả một bức tranh bạn tưởng tượng: Một văn phòng hiện đại với nhiều người đang làm việc. Có người đang dùng máy tính, có người đang thảo luận nhóm. Trên tường có biểu đồ và màn hình hiển thị số liệu.",
+      "translation": "Describe an imaginary picture: A modern office with many people working. Some are using computers, some are discussing in groups. On the walls there are charts and screens showing data.",
+      "tips": "Sử dụng: \"In the foreground/background...\", \"There is/are...\", \"On the left/right side...\", \"It appears that...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "speaking-dp-002",
+      "version": 1,
+      "skill": "speaking",
+      "part": 2,
+      "topic": "travel",
+      "level": "intermediate",
+      "text": "Hãy mô tả: Một nhà ga sân bay với hành khách đang chờ. Có bảng hiển thị chuyến bay, người đang ngồi đọc sách, người đang kéo vali.",
+      "translation": "Describe: An airport terminal with passengers waiting. There are flight information boards, people reading books, people pulling suitcases.",
+      "tips": "Sử dụng: \"I can see...\", \"In this picture...\", \"It looks like...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

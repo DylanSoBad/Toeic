@@ -1,0 +1,46 @@
+{
+  "type": 3,
+  "title": "Trả lời câu hỏi (Respond to Questions)",
+  "description": "Trả lời các câu hỏi ngắn về chủ đề quen thuộc. Trả lời đầy đủ, rõ ràng.",
+  "items": [
+    {
+      "id": "speaking-rq-001",
+      "version": 1,
+      "skill": "speaking",
+      "part": 3,
+      "topic": "lifestyle",
+      "level": "beginner",
+      "text": "Question: What do you usually do on weekends?\n\nGợi ý: Nói về hoạt động cuối tuần, sở thích, thời gian với gia đình/bạn bè.",
+      "translation": "Bạn thường làm gì vào cuối tuần?",
+      "tips": "Cấu trúc: \"On weekends, I usually... I enjoy... because... Sometimes I also...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "speaking-rq-002",
+      "version": 1,
+      "skill": "speaking",
+      "part": 3,
+      "topic": "travel",
+      "level": "intermediate",
+      "text": "Question: Tell me about a memorable trip you have taken.\n\nGợi ý: Nói về nơi đến, hoạt động, cảm nhận.",
+      "translation": "Kể về một chuyến đi đáng nhớ.",
+      "tips": "Cấu trúc: \"I'd like to talk about a trip to... It was memorable because... The highlight was... I felt...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "speaking-rq-003",
+      "version": 1,
+      "skill": "speaking",
+      "part": 3,
+      "topic": "workplace",
+      "level": "advanced",
+      "text": "Question: What qualities do you think are important for a good team leader?\n\nGợi ý: Nói về phẩm chất lãnh đạo: giao tiếp, quyết đoán, đồng cảm.",
+      "translation": "Bạn nghĩ phẩm chất nào quan trọng cho một trưởng nhóm giỏi?",
+      "tips": "Cấu trúc: \"I believe a good team leader should have... For example... Additionally...\"",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

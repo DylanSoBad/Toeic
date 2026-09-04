@@ -1,0 +1,145 @@
+{
+  "part": 2,
+  "title": "Part 2: Hỏi & Đáp (Question-Response)",
+  "description": "Nghe một câu hỏi và ba câu trả lời. Chọn câu trả lời phù hợp nhất. 25 câu hỏi.",
+  "items": [
+    {
+      "id": "listening-p2-001",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "daily-life",
+      "level": "beginner",
+      "audio": "Where is the nearest post office?",
+      "audioUrl": null,
+      "transcript": "Where is the nearest post office?",
+      "options": [
+        "Yes, I did.",
+        "It's on Main Street, two blocks away.",
+        "No, I don't think so."
+      ],
+      "correct": 1,
+      "explanation": "Câu hỏi \"Where\" (ở đâu) cần câu trả lời chỉ địa điểm. \"It's on Main Street\" là đáp án đúng.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p2-002",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "office",
+      "level": "intermediate",
+      "audio": "Did you finish the report for tomorrow's meeting?",
+      "audioUrl": null,
+      "transcript": "Did you finish the report for tomorrow's meeting?",
+      "options": [
+        "The meeting is at 3 PM.",
+        "Yes, I sent it to the manager last night.",
+        "No, she didn't call me."
+      ],
+      "correct": 1,
+      "explanation": "Câu hỏi Yes/No \"Did you...\" cần câu trả lời Yes/No phù hợp. \"Yes, I sent it...\" là đáp án đúng.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p2-003",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "events",
+      "level": "beginner",
+      "audio": "What time does the conference start?",
+      "audioUrl": null,
+      "transcript": "What time does the conference start?",
+      "options": [
+        "In the conference room.",
+        "Yes, it starts.",
+        "At 9 o'clock sharp."
+      ],
+      "correct": 2,
+      "explanation": "\"What time\" cần câu trả lời về thời gian. \"At 9 o'clock sharp\" = Đúng 9 giờ.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p2-004",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "office",
+      "level": "beginner",
+      "audio": "Could you help me move these boxes?",
+      "audioUrl": null,
+      "transcript": "Could you help me move these boxes?",
+      "options": [
+        "Sure, I'll be right there.",
+        "The boxes are heavy.",
+        "No, I couldn't."
+      ],
+      "correct": 0,
+      "explanation": "\"Could you...\" là lời yêu cầu lịch sự. \"Sure, I'll be right there\" = Chắc chắn, tôi đến ngay.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p2-005",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "management",
+      "level": "intermediate",
+      "audio": "Why was the meeting postponed?",
+      "audioUrl": null,
+      "transcript": "Why was the meeting postponed?",
+      "options": [
+        "The meeting was very long.",
+        "Because the CEO had a scheduling conflict.",
+        "Yes, it was postponed."
+      ],
+      "correct": 1,
+      "explanation": "\"Why\" cần lý do. \"Because the CEO had a scheduling conflict\" = Vì CEO có xung đột lịch trình.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p2-006",
+      "version": 1,
+      "skill": "listening",
+      "part": 2,
+      "type": "single-choice",
+      "topic": "training",
+      "level": "intermediate",
+      "audio": "How many people are attending the workshop?",
+      "audioUrl": null,
+      "transcript": "How many people are attending the workshop?",
+      "options": [
+        "The workshop is interesting.",
+        "At the hotel downtown.",
+        "About fifty participants have registered."
+      ],
+      "correct": 2,
+      "explanation": "\"How many\" cần số lượng. \"About fifty participants\" = Khoảng 50 người tham gia.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

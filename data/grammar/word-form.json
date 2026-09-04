@@ -1,0 +1,50 @@
+{
+  "topic": "wordform",
+  "title": "Word Form — Hình thức từ",
+  "rules": [
+    {
+      "id": "gram-wf-001",
+      "title": "Danh từ (Noun)",
+      "formula": "Vị trí: S, O, sau mạo từ/tính từ sở hữu",
+      "usage": "Đứng đầu câu làm chủ ngữ, sau động từ làm tân ngữ, sau mạo từ (a/an/the).",
+      "examples": [
+        "The completion of the project was celebrated. (Noun)",
+        "She submitted her application yesterday."
+      ],
+      "keywords": "Dấu hiệu: -tion, -ment, -ness, -ity, -ance, -ence"
+    },
+    {
+      "id": "gram-wf-002",
+      "title": "Động từ (Verb)",
+      "formula": "Vị trí: sau chủ ngữ",
+      "usage": "Diễn tả hành động, trạng thái. Sau to + V(bare) hoặc sau modal verbs.",
+      "examples": [
+        "The company will expand to new markets.",
+        "Employees must complete the training by Friday."
+      ],
+      "keywords": "Dấu hiệu: -ize, -ify, -ate, en-"
+    },
+    {
+      "id": "gram-wf-003",
+      "title": "Tính từ (Adjective)",
+      "formula": "Vị trí: trước danh từ, sau be/linking verbs",
+      "usage": "Mô tả danh từ. Đứng trước danh từ hoặc sau động từ nối (be, seem, appear, look).",
+      "examples": [
+        "The efficient system saved time. (trước N)",
+        "The results were impressive. (sau be)"
+      ],
+      "keywords": "Dấu hiệu: -ful, -less, -ous, -ive, -able, -ible"
+    },
+    {
+      "id": "gram-wf-004",
+      "title": "Trạng từ (Adverb)",
+      "formula": "Vị trí: trước/sau động từ, trước tính từ",
+      "usage": "Bổ nghĩa cho động từ, tính từ, hoặc cả câu.",
+      "examples": [
+        "She completed the task efficiently. (bổ nghĩa V)",
+        "The extremely busy schedule affected productivity. (bổ nghĩa Adj)"
+      ],
+      "keywords": "Dấu hiệu: -ly (thường thêm vào tính từ)"
+    }
+  ]
+}

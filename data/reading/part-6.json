@@ -1,0 +1,59 @@
+{
+  "part": 6,
+  "title": "Part 6: Hoàn thành đoạn văn (Text Completion)",
+  "description": "Đọc đoạn văn và chọn từ/câu đúng để điền vào chỗ trống. 16 câu hỏi.",
+  "items": [
+    {
+      "id": "reading-p6-001",
+      "version": 1,
+      "skill": "reading",
+      "part": 6,
+      "type": "multi-question",
+      "topic": "customer-service",
+      "level": "intermediate",
+      "passage": "Dear Valued Customer,\n\nWe are writing to inform you about an important update to our loyalty program. _____ , effective January 1st, all members will receive double points on purchases made during weekends.\n\nAdditionally, we have _____ the minimum spending requirement from $100 to $75. This change is designed to make it _____ for our customers to earn rewards.\n\nFor more details, please visit our website or contact our customer service team.",
+      "questions": [
+        {
+          "id": "reading-p6-001-q1",
+          "q": "Chọn từ điền vào chỗ trống (1):",
+          "options": [
+            "However",
+            "Specifically",
+            "Nevertheless",
+            "Moreover"
+          ],
+          "correct": 1,
+          "explanation": "\"Specifically\" = Cụ thể là — dùng để giải thích chi tiết thêm."
+        },
+        {
+          "id": "reading-p6-001-q2",
+          "q": "Chọn từ điền vào chỗ trống (2):",
+          "options": [
+            "reduced",
+            "reducing",
+            "reduces",
+            "reduction"
+          ],
+          "correct": 0,
+          "explanation": "\"have + V3\" — thì hiện tại hoàn thành. \"have reduced\" = đã giảm."
+        },
+        {
+          "id": "reading-p6-001-q3",
+          "q": "Chọn từ điền vào chỗ trống (3):",
+          "options": [
+            "easy",
+            "easier",
+            "easily",
+            "easiest"
+          ],
+          "correct": 1,
+          "explanation": "\"make it + comparative\" — \"make it easier\" = làm cho dễ hơn."
+        }
+      ],
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

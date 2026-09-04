@@ -1,0 +1,139 @@
+{
+  "part": 5,
+  "title": "Part 5: Hoàn thành câu (Incomplete Sentences)",
+  "description": "Chọn từ hoặc cụm từ đúng để hoàn thành câu. 30 câu hỏi — tập trung ngữ pháp và từ vựng.",
+  "items": [
+    {
+      "id": "reading-p5-001",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "business",
+      "level": "intermediate",
+      "q": "The company has announced plans to _____ a new branch in Ho Chi Minh City.",
+      "options": [
+        "open",
+        "opening",
+        "opened",
+        "opens"
+      ],
+      "correct": 0,
+      "explanation": "\"to + V(bare)\" — sau \"to\" cần động từ nguyên thể. \"to open\" = mở.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "reading-p5-002",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "office",
+      "level": "beginner",
+      "q": "All employees must submit their reports _____ the end of each month.",
+      "options": [
+        "by",
+        "until",
+        "during",
+        "while"
+      ],
+      "correct": 0,
+      "explanation": "\"by the end of\" = trước/trước khi kết thúc. \"By\" chỉ thời hạn (deadline).",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "reading-p5-003",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "management",
+      "level": "intermediate",
+      "q": "The manager was very _____ with the team's performance this quarter.",
+      "options": [
+        "satisfy",
+        "satisfaction",
+        "satisfying",
+        "satisfied"
+      ],
+      "correct": 3,
+      "explanation": "\"was satisfied with\" — cần tính từ/phân từ mô tả cảm xúc. \"Satisfied\" (hài lòng) là đáp án đúng.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "reading-p5-004",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "personnel",
+      "level": "intermediate",
+      "q": "Ms. Tanaka, _____ is the head of marketing, will lead the new project.",
+      "options": [
+        "which",
+        "who",
+        "whom",
+        "whose"
+      ],
+      "correct": 1,
+      "explanation": "\"who\" làm chủ ngữ cho mệnh đề quan hệ chỉ người. \"Ms. Tanaka, who is...\".",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "reading-p5-005",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "construction",
+      "level": "intermediate",
+      "q": "The construction of the new building is expected to be _____ by December.",
+      "options": [
+        "complete",
+        "completion",
+        "completed",
+        "completing"
+      ],
+      "correct": 2,
+      "explanation": "\"to be + V3/ed\" — câu bị động. \"is expected to be completed\" = dự kiến được hoàn thành.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "reading-p5-006",
+      "version": 1,
+      "skill": "reading",
+      "part": 5,
+      "type": "single-choice",
+      "topic": "office",
+      "level": "intermediate",
+      "q": "Please ensure that all documents are filed _____ before leaving the office.",
+      "options": [
+        "proper",
+        "properly",
+        "properness",
+        "propriety"
+      ],
+      "correct": 1,
+      "explanation": "Cần trạng từ (adverb) để bổ nghĩa cho động từ \"filed\". \"Properly\" = một cách đúng đắn.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

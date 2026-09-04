@@ -1,0 +1,16 @@
+{
+  "topic": "business",
+  "title": "Kinh doanh (Business)",
+  "items": [
+    { "id": "vocab-biz-001", "word": "acquisition", "phonetic": "/ˌækwɪˈzɪʃən/", "meaning": "Sự mua lại, thâu tóm", "example": "The company's acquisition of its rival cost $2 billion." },
+    { "id": "vocab-biz-002", "word": "revenue", "phonetic": "/ˈrevənjuː/", "meaning": "Doanh thu", "example": "Annual revenue increased by 15% this year." },
+    { "id": "vocab-biz-003", "word": "negotiate", "phonetic": "/nɪˈɡoʊʃieɪt/", "meaning": "Đàm phán, thương lượng", "example": "We need to negotiate the terms of the contract." },
+    { "id": "vocab-biz-004", "word": "stakeholder", "phonetic": "/ˈsteɪkhoʊldər/", "meaning": "Bên liên quan, cổ đông", "example": "All stakeholders were invited to the annual meeting." },
+    { "id": "vocab-biz-005", "word": "implement", "phonetic": "/ˈɪmplɪment/", "meaning": "Thực hiện, triển khai", "example": "The new policy will be implemented next quarter." },
+    { "id": "vocab-biz-006", "word": "commodity", "phonetic": "/kəˈmɒdəti/", "meaning": "Hàng hóa", "example": "Oil is one of the most traded commodities worldwide." },
+    { "id": "vocab-biz-007", "word": "dividend", "phonetic": "/ˈdɪvɪdend/", "meaning": "Cổ tức", "example": "Shareholders received a dividend of $2 per share." },
+    { "id": "vocab-biz-008", "word": "entrepreneur", "phonetic": "/ˌɒntrəprəˈnɜːr/", "meaning": "Doanh nhân, người khởi nghiệp", "example": "She became a successful entrepreneur at age 25." },
+    { "id": "vocab-biz-009", "word": "merger", "phonetic": "/ˈmɜːrdʒər/", "meaning": "Sự sáp nhập", "example": "The merger between the two companies created the largest bank in the region." },
+    { "id": "vocab-biz-010", "word": "profitable", "phonetic": "/ˈprɒfɪtəbl/", "meaning": "Có lãi, sinh lời", "example": "The new product line has proven to be highly profitable." }
+  ]
+}

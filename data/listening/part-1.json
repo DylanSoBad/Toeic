@@ -1,0 +1,151 @@
+{
+  "part": 1,
+  "title": "Part 1: Mô tả hình ảnh (Photographs)",
+  "description": "Nghe một mô tả ngắn về một bức tranh và chọn câu mô tả đúng nhất. 6 câu hỏi.",
+  "items": [
+    {
+      "id": "listening-p1-001",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "office",
+      "level": "beginner",
+      "audio": "The woman is sitting at a desk and typing on a computer.",
+      "audioUrl": null,
+      "transcript": "The woman is sitting at a desk and typing on a computer.",
+      "options": [
+        "A woman is cooking in the kitchen.",
+        "A woman is working at a computer.",
+        "A man is reading a newspaper.",
+        "People are having a meeting."
+      ],
+      "correct": 1,
+      "explanation": "Câu mô tả \"The woman is sitting at a desk and typing on a computer\" = Một phụ nữ đang làm việc trên máy tính.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p1-002",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "travel",
+      "level": "beginner",
+      "audio": "Several people are waiting in line at a bus stop.",
+      "audioUrl": null,
+      "transcript": "Several people are waiting in line at a bus stop.",
+      "options": [
+        "People are boarding a train.",
+        "People are shopping at a store.",
+        "People are waiting at a bus stop.",
+        "People are walking in a park."
+      ],
+      "correct": 2,
+      "explanation": "\"Waiting in line at a bus stop\" = Đang xếp hàng ở trạm xe buýt.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p1-003",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "daily-life",
+      "level": "beginner",
+      "audio": "A man is delivering a package to a woman at the door.",
+      "audioUrl": null,
+      "transcript": "A man is delivering a package to a woman at the door.",
+      "options": [
+        "A man is cleaning the house.",
+        "A woman is opening a window.",
+        "A man is delivering a package.",
+        "A woman is mailing a letter."
+      ],
+      "correct": 2,
+      "explanation": "\"Delivering a package to a woman at the door\" = Giao gói hàng cho phụ nữ tại cửa.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p1-004",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "business",
+      "level": "intermediate",
+      "audio": "The conference room is filled with people listening to a presentation.",
+      "audioUrl": null,
+      "transcript": "The conference room is filled with people listening to a presentation.",
+      "options": [
+        "People are eating lunch.",
+        "People are listening to a presentation.",
+        "People are playing games.",
+        "The room is empty."
+      ],
+      "correct": 1,
+      "explanation": "\"Conference room filled with people listening to a presentation\" = Phòng họp có người đang nghe thuyết trình.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p1-005",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "construction",
+      "level": "intermediate",
+      "audio": "A construction worker is examining a blueprint outside a building.",
+      "audioUrl": null,
+      "transcript": "A construction worker is examining a blueprint outside a building.",
+      "options": [
+        "A worker is fixing a pipe.",
+        "A worker is examining a blueprint.",
+        "A worker is painting a wall.",
+        "A worker is driving a truck."
+      ],
+      "correct": 1,
+      "explanation": "\"Examining a blueprint\" = Đang kiểm tra bản thiết kế.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "listening-p1-006",
+      "version": 1,
+      "skill": "listening",
+      "part": 1,
+      "type": "single-choice",
+      "topic": "business",
+      "level": "intermediate",
+      "audio": "Two people are shaking hands across a table in an office.",
+      "audioUrl": null,
+      "transcript": "Two people are shaking hands across a table in an office.",
+      "options": [
+        "People are fighting.",
+        "People are eating dinner.",
+        "People are shaking hands.",
+        "People are signing a contract."
+      ],
+      "correct": 2,
+      "explanation": "\"Shaking hands across a table\" = Bắt tay qua bàn.",
+      "source": "manual",
+      "status": "approved",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": 2,
+  "title": "Trả lời Email (Q8)",
+  "description": "Đọc email và viết câu trả lời phù hợp. Tối thiểu 30 từ.",
+  "items": [
+    {
+      "id": "writing-em-001",
+      "version": 1,
+      "skill": "writing",
+      "part": 2,
+      "topic": "office",
+      "level": "intermediate",
+      "email": "From: Manager\nTo: You\nSubject: Team Building Event\n\nHi,\n\nWe are planning a team building event next Saturday. The event will include outdoor activities and a lunch. Please let me know if you can attend and if you have any dietary restrictions.\n\nThanks,\nManager",
+      "question": "Viết email trả lời (tối thiểu 30 từ): Xác nhận tham dự và nêu yêu cầu ăn uống (nếu có).",
+      "sample": "Dear Manager,\n\nThank you for the invitation. I am happy to confirm that I will be able to attend the team building event next Saturday. Regarding dietary restrictions, I am vegetarian, so I would appreciate it if there could be some vegetarian options for lunch.\n\nI look forward to the event.\n\nBest regards,\n[Your name]",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "id": "writing-em-002",
+      "version": 1,
+      "skill": "writing",
+      "part": 2,
+      "topic": "business",
+      "level": "intermediate",
+      "email": "From: Client\nTo: You\nSubject: Meeting Reschedule\n\nDear Sir/Madam,\n\nI need to reschedule our meeting planned for tomorrow at 2 PM. Would it be possible to move it to Thursday at 10 AM instead?\n\nBest regards,\nClient",
+      "question": "Viết email trả lời (tối thiểu 30 từ): Đồng ý đổi lịch hoặc đề xuất thời gian khác.",
+      "sample": "Dear Client,\n\nThank you for letting me know. Thursday at 10 AM works perfectly for me. I have updated my calendar accordingly.\n\nPlease do not hesitate to reach out if you need to make any further changes.\n\nBest regards,\n[Your name]",
+      "createdAt": "2026-09-01T00:00:00.000Z",
+      "updatedAt": "2026-09-01T00:00:00.000Z"
+    }
+  ]
+}
