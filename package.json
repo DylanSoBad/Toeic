@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "build": "echo 'No build required'",
     "test": "node test/suite.js"
   },
   "keywords": [
