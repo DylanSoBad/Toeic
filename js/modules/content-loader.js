@@ -1,226 +1,146 @@
-/**
- * Content Loader Module - Data Loader, Cache & Custom Exercise Manager
- */
+/** Bundled content with persistent local overrides and deletion tombstones. */
 import { Storage } from './storage.js';
 import { Validator } from './validation.js';
 
 const cache = new Map();
+const definitions = [
+  ...[1, 2, 3, 4].map(part => ({ path: `listening/part-${part}.json`, skill: 'listening', part })),
+  ...[5, 6, 7].map(part => ({ path: `reading/part-${part}.json`, skill: 'reading', part })),
+  ...['read-aloud', 'describe-picture', 'respond-questions', 'opinion'].map((name, index) => ({ path: `speaking/${name}.json`, skill: 'speaking', part: index + 1 })),
+  ...['sentence', 'email', 'essay'].map((name, index) => ({ path: `writing/${name}.json`, skill: 'writing', part: index + 1 })),
+  ...['business', 'office', 'travel', 'finance', 'health'].map(topic => ({ path: `vocabulary/${topic}.json`, skill: 'vocabulary', topic })),
+  ...['tenses', 'passive', 'relative-clauses', 'conditionals', 'word-form'].map(topic => ({ path: `grammar/${topic}.json`, skill: 'grammar', topic, key: 'rules' })),
+  { path: 'mock-tests/test-01.json', collection: 'mock-tests/test-01', skill: 'mock' }
+];
+const clone = value => JSON.parse(JSON.stringify(value));
+const inferSkill = item => item.skill || (item.word ? 'vocabulary' : item.formula || item.usage ? 'grammar' : undefined);
+
+function normalize(item, definition = {}) {
+  const result = { version: 1, level: 'intermediate', topic: definition.topic || 'general', source: 'system', status: 'approved', ...item };
+  result.skill = inferSkill(item) || definition.skill;
+  if (definition.part !== undefined && result.part === undefined) result.part = definition.part;
+  if (definition.collection) result.collection = definition.collection;
+  return result;
+}
+function merge(staticItems, customItems, deletedIds) {
+  const merged = new Map(staticItems.map(item => [item.id, item]));
+  for (const item of customItems) merged.set(item.id, item);
+  for (const id of deletedIds) merged.delete(id);
+  return [...merged.values()];
+}
 
 export const ContentLoader = {
-  /**
-   * Fetch JSON file from path with cache
-   */
+  errors: [],
   async loadJson(relPath) {
-    if (cache.has(relPath)) {
-      return cache.get(relPath);
-    }
-
+    if (!definitions.some(definition => definition.path === relPath)) return null;
+    if (cache.has(relPath)) return clone(cache.get(relPath));
     try {
       const response = await fetch(`data/${relPath}`);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} when fetching ${relPath}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
-      cache.set(relPath, data);
-      return data;
-    } catch (err) {
-      console.warn(`ContentLoader: Failed to load data/${relPath}:`, err.message);
+      const definition = definitions.find(entry => entry.path === relPath);
+      const key = definition.key || 'items';
+      if (!data || typeof data !== 'object' || !Array.isArray(data[key])) throw new Error(`Thiếu mảng ${key}`);
+      const normalized = data[key].map(item => normalize(item, definition));
+      const validation = Validator.validateQuestionBank(normalized);
+      if (!validation.valid) throw new Error(validation.errors.join('; '));
+      const result = { ...data, [key]: normalized };
+      cache.set(relPath, result);
+      this.errors = this.errors.filter(error => error.path !== relPath);
+      return clone(result);
+    } catch (error) {
+      this.errors = this.errors.filter(entry => entry.path !== relPath);
+      this.errors.push({ path: relPath, message: error.message });
+      console.warn(`Không tải được ${relPath}: ${error.message}`);
       return null;
     }
   },
-
-  /**
-   * Get all custom exercises from Storage
-   */
+  clearCache() { cache.clear(); this.errors = []; },
+  getLoadErrors() { return clone(this.errors); },
   getCustomExercises() {
     const data = Storage.get();
-    return Array.isArray(data.customExercises) ? data.customExercises : [];
+    return Array.isArray(data.customExercises) ? clone(data.customExercises) : [];
   },
-
-  /**
-   * Add or update an exercise in custom storage
-   */
-  saveExercise(exercise) {
-    const validResult = Validator.validateQuestion(exercise);
-    if (!validResult.valid) {
-      return { success: false, errors: validResult.errors };
-    }
-
+  getDeletedIds() { const data = Storage.get(); return Array.isArray(data.deletedExerciseIds) ? data.deletedExerciseIds : []; },
+  _save(data) {
+    try {
+      const result = Storage.save(data);
+      if (result === false) throw new Error('Không thể lưu vào bộ nhớ trình duyệt. Hãy export bản sao và kiểm tra dung lượng.');
+      return { success: true };
+    } catch (error) { return { success: false, errors: [error.message] }; }
+  },
+  saveExercise(exercise) { return this.saveExercises([exercise]); },
+  saveExercises(exercises) {
+    const validation = Validator.validateQuestionBank(exercises);
+    if (!validation.valid) return { success: false, errors: validation.errors };
     const data = Storage.get();
-    if (!Array.isArray(data.customExercises)) data.customExercises = [];
-
-    const existingIdx = data.customExercises.findIndex(x => x.id === exercise.id);
-    exercise.updatedAt = new Date().toISOString();
-
-    if (existingIdx !== -1) {
-      data.customExercises[existingIdx] = exercise;
-    } else {
-      if (!exercise.createdAt) exercise.createdAt = new Date().toISOString();
-      data.customExercises.push(exercise);
-    }
-
-    Storage.save(data);
-    return { success: true, exercise };
+    const custom = Array.isArray(data.customExercises) ? data.customExercises : [];
+    const now = new Date().toISOString();
+    const saved = exercises.map(item => ({ ...clone(item), skill: inferSkill(item), status: item.status || 'draft', source: item.source || 'manual', version: item.version || 1, createdAt: item.createdAt || now, updatedAt: now }));
+    const merged = merge(custom, saved, []);
+    // A synchronous save checks every static collection already loaded by the UI.
+    const staticItems = [...cache.values()].flatMap(value => value.items || value.rules || []);
+    const deleted = (data.deletedExerciseIds || []).filter(id => !saved.some(item => item.id === id));
+    const combined = merge(staticItems, merged, deleted);
+    const check = Validator.validateQuestionBank(combined);
+    if (!check.valid) return { success: false, errors: check.errors };
+    data.customExercises = merged;
+    data.deletedExerciseIds = deleted;
+    const result = this._save(data);
+    return { ...result, ...(result.success ? { exercise: saved[0], exercises: saved, count: saved.length } : {}) };
   },
-
-  /**
-   * Delete an exercise
-   */
-  deleteExercise(exerciseId) {
+  deleteExercise(id) {
+    if (typeof id !== 'string' || !id) return false;
     const data = Storage.get();
-    if (!Array.isArray(data.customExercises)) return false;
-
-    const initialLen = data.customExercises.length;
-    data.customExercises = data.customExercises.filter(x => x.id !== exerciseId);
-
-    if (data.customExercises.length !== initialLen) {
-      Storage.save(data);
-      return true;
-    }
-    return false;
+    data.customExercises = (data.customExercises || []).filter(item => item.id !== id);
+    data.deletedExerciseIds = [...new Set([...(data.deletedExerciseIds || []), id])];
+    return this._save(data).success;
   },
-
-  /**
-   * Fetch listening data for a specific part (1, 2, 3, 4) merged with custom questions
-   */
-  async getListeningData(part) {
-    const fileMap = {
-      1: 'listening/part-1.json',
-      2: 'listening/part-2.json',
-      3: 'listening/part-3.json',
-      4: 'listening/part-4.json'
-    };
-
-    const filePath = fileMap[part];
-    let fileData = filePath ? await this.loadJson(filePath) : null;
-    if (!fileData) {
-      fileData = { part, title: `Part ${part}`, items: [] };
-    }
-
-    // Merge with approved custom listening exercises for this part
-    const custom = this.getCustomExercises().filter(
-      x => x.skill === 'listening' && parseInt(x.part, 10) === parseInt(part, 10) && x.status === 'approved'
-    );
-
-    return {
-      ...fileData,
-      items: [...(fileData.items || []), ...custom]
-    };
+  async importExercises(items, { replaceExisting = false } = {}) {
+    const valid = Validator.validateQuestionBank(items);
+    if (!valid.valid || !items.length) return { success: false, errors: valid.errors.length ? valid.errors : ['Danh sách import rỗng.'] };
+    const bank = await this.getAllQuestionBank();
+    const conflicts = items.filter(item => bank.some(existing => existing.id === item.id)).map(item => item.id);
+    if (conflicts.length && !replaceExisting) return { success: false, conflicts, errors: [`ID đã tồn tại: ${conflicts.join(', ')}. Bật thay thế nếu muốn cập nhật các bài này.`] };
+    const normalized = items.map(item => ({ ...item, skill: inferSkill(item), source: item.source || 'import', status: /ai|mock/.test(item.source || '') ? 'draft' : item.status || 'draft' }));
+    const check = Validator.validateQuestionBank(merge(bank, normalized, []));
+    if (!check.valid) return { success: false, errors: check.errors };
+    return this.saveExercises(normalized);
   },
-
-  /**
-   * Fetch reading data for a specific part (5, 6, 7) merged with custom questions
-   */
-  async getReadingData(part) {
-    const fileMap = {
-      5: 'reading/part-5.json',
-      6: 'reading/part-6.json',
-      7: 'reading/part-7.json'
-    };
-
-    const filePath = fileMap[part];
-    let fileData = filePath ? await this.loadJson(filePath) : null;
-    if (!fileData) {
-      fileData = { part, title: `Part ${part}`, items: [] };
-    }
-
-    const custom = this.getCustomExercises().filter(
-      x => x.skill === 'reading' && parseInt(x.part, 10) === parseInt(part, 10) && x.status === 'approved'
-    );
-
-    return {
-      ...fileData,
-      items: [...(fileData.items || []), ...custom]
-    };
+  async _getCollection(definition) {
+    if (!definition) return null;
+    const fileData = await this.loadJson(definition.path) || { title: definition.topic || `Part ${definition.part}`, part: definition.part, topic: definition.topic, loadError: true };
+    const key = definition.key || 'items';
+    const matches = item => definition.collection ? item.collection === definition.collection : !item.collection && item.skill === definition.skill && (definition.part === undefined || item.part === definition.part) && (definition.topic === undefined || item.topic === definition.topic);
+    // Merge before filtering: changed skill/part/status must hide the previous bundled row.
+    const values = merge(fileData[key] || [], this.getCustomExercises(), this.getDeletedIds()).filter(matches).filter(item => item.status === 'approved');
+    const validation = Validator.validateQuestionBank(values);
+    if (!validation.valid) return { ...fileData, [key]: [], loadError: true, errors: validation.errors };
+    return { ...fileData, [key]: values };
   },
-
-  /**
-   * Fetch speaking data
-   */
-  async getSpeakingData(typeId) {
-    const fileMap = {
-      1: 'speaking/read-aloud.json',
-      2: 'speaking/describe-picture.json',
-      3: 'speaking/respond-questions.json',
-      4: 'speaking/opinion.json'
-    };
-    const filePath = fileMap[typeId];
-    return filePath ? await this.loadJson(filePath) : null;
+  async getListeningData(part) { return this._getCollection(definitions.find(definition => definition.skill === 'listening' && definition.part === Number(part))); },
+  async getReadingData(part) { return this._getCollection(definitions.find(definition => definition.skill === 'reading' && definition.part === Number(part))); },
+  async getSpeakingData(typeId) { return this._getCollection(definitions.find(definition => definition.skill === 'speaking' && definition.part === Number(typeId))); },
+  async getWritingData(typeId) { return this._getCollection(definitions.find(definition => definition.skill === 'writing' && definition.part === Number(typeId))); },
+  async _getTopic(skill, topic) {
+    const definition = definitions.find(entry => entry.skill === skill && entry.topic === topic);
+    if (definition) return this._getCollection(definition);
+    const key = skill === 'grammar' ? 'rules' : 'items';
+    const items = (await this.getAllQuestionBank({ approvedOnly: true })).filter(item => item.skill === skill && item.topic === topic);
+    return { title: topic, topic, [key]: items };
   },
-
-  /**
-   * Fetch writing data
-   */
-  async getWritingData(typeId) {
-    const fileMap = {
-      1: 'writing/sentence.json',
-      2: 'writing/email.json',
-      3: 'writing/essay.json'
-    };
-    const filePath = fileMap[typeId];
-    return filePath ? await this.loadJson(filePath) : null;
+  async getVocabData(topic) { return this._getTopic('vocabulary', topic); },
+  async getGrammarData(topic) { return this._getTopic('grammar', topic); },
+  async getMockTestData() { return this._getCollection(definitions.find(definition => definition.collection)); },
+  async getTopics(skill) {
+    const bank = await this.getAllQuestionBank({ approvedOnly: true });
+    return [...new Set(bank.filter(item => item.skill === skill).map(item => item.topic).filter(Boolean))];
   },
-
-  /**
-   * Fetch vocabulary topic
-   */
-  async getVocabData(topic) {
-    return await this.loadJson(`vocabulary/${topic}.json`);
-  },
-
-  /**
-   * Fetch grammar topic
-   */
-  async getGrammarData(topic) {
-    return await this.loadJson(`grammar/${topic}.json`);
-  },
-
-  /**
-   * Fetch mock test
-   */
-  async getMockTestData() {
-    return await this.loadJson('mock-tests/test-01.json');
-  },
-
-  /**
-   * Get all active and draft questions across all categories for Admin Question Bank
-   */
-  async getAllQuestionBank() {
-    const all = [];
-
-    // Load from static JSON files
-    const staticFiles = [
-      'listening/part-1.json',
-      'listening/part-2.json',
-      'listening/part-3.json',
-      'listening/part-4.json',
-      'reading/part-5.json',
-      'reading/part-6.json',
-      'reading/part-7.json'
-    ];
-
-    for (const f of staticFiles) {
-      const data = await this.loadJson(f);
-      if (data && Array.isArray(data.items)) {
-        data.items.forEach(item => {
-          all.push({
-            ...item,
-            source: item.source || 'system',
-            status: item.status || 'approved'
-          });
-        });
-      }
-    }
-
-    // Add custom & AI exercises from localStorage
-    const custom = this.getCustomExercises();
-    custom.forEach(item => {
-      // Avoid duplicate by ID if static file also had it
-      if (!all.some(x => x.id === item.id)) {
-        all.push(item);
-      }
-    });
-
-    return all;
+  async getAllQuestionBank({ approvedOnly = false } = {}) {
+    const results = await Promise.all(definitions.map(definition => this.loadJson(definition.path)));
+    const staticItems = results.flatMap((data, index) => data ? data[definitions[index].key || 'items'] : []);
+    const values = merge(staticItems, this.getCustomExercises(), this.getDeletedIds());
+    const valid = values.filter(item => Validator.validateQuestion(item).valid);
+    return approvedOnly ? valid.filter(item => item.status === 'approved') : valid;
   }
 };

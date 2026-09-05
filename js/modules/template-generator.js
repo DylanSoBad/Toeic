@@ -17,7 +17,7 @@ const TENSE_TEMPLATES = [
   {
     template: 'The IT department _____ the servers every Sunday at midnight.',
     correct: 'updates',
-    distractors: ['updated', 'updating', 'have updated'],
+    distractors: ['update', 'updating', 'have update'],
     explanation: '"every Sunday" chỉ lịch trình/thói quen lặp lại, cần thì hiện tại đơn với chủ ngữ số ít: "updates".',
     topic: 'tenses',
     level: 'beginner'
@@ -41,10 +41,28 @@ const TENSE_TEMPLATES = [
   {
     template: 'Next week, our regional director _____ three international branch offices.',
     correct: 'will visit',
-    distractors: ['visited', 'visits', 'visiting'],
+    distractors: ['visited', 'have visit', 'visiting'],
     explanation: '"Next week" là dấu hiệu tương lai rõ ràng → Dùng thì tương lai đơn "will visit".',
     topic: 'tenses',
     level: 'beginner'
+  }
+  ,{
+    template: 'The accountant _____ all travel receipts two hours ago.',
+    correct: 'checked', distractors: ['check', 'checking', 'checks'],
+    explanation: '“Two hours ago” xác định thời điểm đã kết thúc, nên dùng quá khứ đơn “checked”. “Check/checks” là hiện tại; “checking” cần trợ động từ.',
+    topic: 'tenses', level: 'beginner'
+  },
+  {
+    template: 'At the moment, the receptionist is _____ a visitor to the meeting room.',
+    correct: 'escorting', distractors: ['escort', 'escorted', 'escorts'],
+    explanation: 'Hiện tại tiếp diễn có dạng “is + V-ing”: “is escorting”. Ba lựa chọn còn lại không tạo cấu trúc tiếp diễn với “is”.',
+    topic: 'tenses', level: 'beginner'
+  },
+  {
+    template: 'By this time next Friday, the auditors will have _____ their investigation.',
+    correct: 'concluded', distractors: ['conclude', 'concluding', 'concludes'],
+    explanation: 'Tương lai hoàn thành dùng “will have + V3”: concluded. Không dùng nguyên mẫu, V-ing hoặc dạng chia ngôi sau have trong cấu trúc này.',
+    topic: 'tenses', level: 'advanced'
   }
 ];
 
@@ -191,10 +209,21 @@ function shuffleArray(arr) {
 }
 
 export const TemplateGenerator = {
+  getCapabilities() {
+    return { skill: 'reading', part: 5, categories: ['all', 'tenses', 'word-form', 'passive', 'conditionals', 'vocab'], levels: ['all', 'beginner', 'intermediate', 'advanced'], maxCount: 20 };
+  },
+  getAvailableCount({ category = 'all', level = 'all' } = {}) {
+    const groups = { tenses: TENSE_TEMPLATES, 'word-form': WORD_FORM_TEMPLATES, passive: PASSIVE_TEMPLATES, conditionals: CONDITIONAL_TEMPLATES, vocab: VOCAB_TEMPLATES };
+    const pool = category === 'all' ? Object.values(groups).flat() : groups[category] || [];
+    return pool.filter(item => level === 'all' || item.level === level).length;
+  },
   /**
    * Generate an array of exercises based on template choices
    */
   generate({ category = 'all', level = 'all', count = 5, withExplanation = true } = {}) {
+    const capabilities = this.getCapabilities();
+    if (!capabilities.categories.includes(category) || !capabilities.levels.includes(level)) throw new Error('Chuyên đề hoặc độ khó chưa được bộ mẫu hỗ trợ.');
+    if (!Number.isInteger(Number(count)) || Number(count) < 1 || Number(count) > 20) throw new Error('Số câu phải là số nguyên từ 1 đến 20.');
     const pool = [];
 
     if (category === 'all' || category === 'tenses') pool.push(...TENSE_TEMPLATES);
@@ -205,16 +234,16 @@ export const TemplateGenerator = {
 
     let filtered = pool;
     if (level && level !== 'all') {
-      const match = pool.filter(x => x.level === level);
-      if (match.length > 0) filtered = match;
+      filtered = pool.filter(x => x.level === level);
     }
 
-    const safeCount = Math.min(Math.max(parseInt(count, 10) || 5, 1), 20);
+    if (!filtered.length) throw new Error('Chưa có mẫu ở độ khó này trong chuyên đề đã chọn. Hãy chọn độ khó hoặc chuyên đề khác.');
+    const safeCount = Math.min(Number(count), filtered.length);
     const shuffledPool = shuffleArray(filtered);
     const selected = [];
 
     for (let i = 0; i < safeCount; i++) {
-      const tmpl = shuffledPool[i % shuffledPool.length];
+      const tmpl = shuffledPool[i];
 
       // Assemble options and shuffle
       const allOptions = [tmpl.correct, ...tmpl.distractors];
@@ -222,7 +251,7 @@ export const TemplateGenerator = {
       const correctIndex = shuffledOptions.indexOf(tmpl.correct);
 
       const exercise = {
-        id: `offline-gen-${Date.now()}-${i + 1}`,
+        id: `offline-gen-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`}-${i + 1}`,
         version: 1,
         skill: 'reading',
         part: 5,
@@ -232,7 +261,11 @@ export const TemplateGenerator = {
         q: tmpl.template,
         options: shuffledOptions,
         correct: correctIndex,
-        explanation: withExplanation ? tmpl.explanation : 'Đáp án đúng theo cấu trúc ngữ pháp TOEIC chuẩn.',
+        explanation: withExplanation ? tmpl.explanation : '',
+        questionType: tmpl.topic.includes('vocab') ? 'vocabulary' : tmpl.topic,
+        grammarPoint: tmpl.topic.includes('vocab') ? '' : tmpl.topic,
+        vocabularyTopic: tmpl.topic.includes('vocab') ? tmpl.topic : '',
+        estimatedTime: tmpl.level === 'advanced' ? 45 : 30,
         source: 'template-generator',
         status: 'approved',
         createdAt: new Date().toISOString(),
@@ -243,9 +276,7 @@ export const TemplateGenerator = {
       const validation = Validator.validateQuestion(exercise);
       if (validation.valid) {
         selected.push(exercise);
-      } else {
-        console.error('TemplateGenerator validation error:', validation.errors);
-      }
+      } else throw new Error(validation.errors.join('; '));
     }
 
     return selected;

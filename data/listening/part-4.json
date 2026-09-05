@@ -25,7 +25,8 @@
             "To announce a cancellation"
           ],
           "correct": 1,
-          "explanation": "Mục đích thông báo là thông tin về việc chuyến bay bị hoãn (delayed by 2 hours)."
+          "explanation": "Mục đích thông báo là thông tin về việc chuyến bay bị hoãn (delayed by 2 hours).",
+          "questionType": "main-idea"
         },
         {
           "id": "listening-p4-001-q2",
@@ -36,7 +37,8 @@
             "3:45 PM"
           ],
           "correct": 2,
-          "explanation": "\"The new departure time is 3:45 PM\"."
+          "explanation": "\"The new departure time is 3:45 PM\".",
+          "questionType": "detail"
         },
         {
           "id": "listening-p4-001-q3",
@@ -47,13 +49,15 @@
             "A hotel booking"
           ],
           "correct": 1,
-          "explanation": "\"Passengers who wish to have a meal voucher may collect one at Gate 12\"."
+          "explanation": "\"Passengers who wish to have a meal voucher may collect one at Gate 12\".",
+          "questionType": "detail"
         }
       ],
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "estimatedTime": 135
     }
   ]
 }

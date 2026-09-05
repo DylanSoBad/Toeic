@@ -1,141 +1,122 @@
-/**
- * Validation Module - Strict Schema Validation & HTML Sanitization
- */
+/** Shared, non-mutating validation for imported, generated and bundled content. */
+const SKILLS = ['listening', 'reading', 'speaking', 'writing', 'vocabulary', 'grammar', 'mock'];
+const LEVELS = ['beginner', 'intermediate', 'advanced'];
+const STATUSES = ['approved', 'draft', 'rejected'];
+const TEXT_FIELDS = ['q', 'question', 'passage', 'transcript', 'audio', 'explanation', 'text', 'sample', 'hint', 'email', 'topicText', 'word', 'meaning', 'phonetic', 'example', 'title', 'formula', 'usage', 'keywords', 'tips', 'translation', 'topic', 'source', 'questionType', 'grammarPoint', 'vocabularyTopic', 'trapType', 'collection', 'model'];
+const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const hasText = value => typeof value === 'string' && value.trim().length > 0;
+const normalized = value => value.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
 
 export const Validator = {
-  /**
-   * Basic XSS protection: escape dangerous HTML characters
-   */
-  sanitizeHtml(str) {
-    if (typeof str !== 'string') return '';
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+  sanitizeHtml(value) {
+    if (typeof value !== 'string' && typeof value !== 'number') return '';
+    return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   },
 
-  /**
-   * Validates a single question item against schema
-   * Returns: { valid: boolean, errors: string[] }
-   */
+  isSafeMediaUrl(value) {
+    if (value == null || value === '') return true;
+    if (typeof value !== 'string' || value.length > 2048 || /[\s\\\x00-\x1f]/.test(value)) return false;
+    if (/^https?:\/\//i.test(value)) {
+      try { const url = new URL(value); return !url.username && !url.password; } catch { return false; }
+    }
+    return !value.startsWith('//') && !value.includes('..') && !/^[^/]*:/.test(value);
+  },
+
   validateQuestion(item) {
     const errors = [];
-
-    if (!item || typeof item !== 'object') {
-      return { valid: false, errors: ['Dữ liệu câu hỏi phải là một đối tượng (object)'] };
-    }
-
-    if (!item.id || typeof item.id !== 'string' || !item.id.trim()) {
-      errors.push('Câu hỏi thiếu trường ID duy nhất hoặc ID không hợp lệ');
-    }
-
-    const validSkills = ['listening', 'reading', 'speaking', 'writing', 'vocabulary', 'grammar', 'mock'];
-    if (item.skill && !validSkills.includes(item.skill.toLowerCase())) {
-      errors.push(`Kỹ năng "${item.skill}" không hợp lệ. Cho phép: ${validSkills.join(', ')}`);
-    }
-
-    // Determine type: single-choice or multi-question
-    const isMulti = item.type === 'multi-question' || Array.isArray(item.questions);
-
-    if (isMulti) {
-      // Must have passage or audio/transcript
-      const hasContent = item.passage || item.audio || item.transcript;
-      if (!hasContent || typeof hasContent !== 'string' || !hasContent.trim()) {
-        errors.push(`Câu hỏi nhóm ID "${item.id || 'N/A'}" thiếu nội dung đoạn văn (passage) hoặc đoạn nghe (audio/transcript)`);
+    if (!record(item)) return { valid: false, errors: ['Bài tập phải là một object, không được là null hoặc mảng.'] };
+    const seen = new Set();
+    const walk = (value, depth = 0) => {
+      if (!value || typeof value !== 'object') return;
+      if (depth > 8 || seen.has(value)) { errors.push('Dữ liệu quá sâu hoặc có tham chiếu vòng.'); return; }
+      seen.add(value);
+      for (const key of Object.keys(value)) {
+        if (['__proto__', 'prototype', 'constructor'].includes(key)) errors.push('Trường không được phép: ' + key);
+        walk(value[key], depth + 1);
       }
-
-      if (!Array.isArray(item.questions) || item.questions.length === 0) {
-        errors.push(`Câu hỏi nhóm ID "${item.id || 'N/A'}" không có danh sách câu hỏi con (questions)`);
+      seen.delete(value);
+    };
+    walk(item);
+    const checkId = (value, label) => {
+      if (!hasText(value) || !/^[\p{L}\p{N}][\p{L}\p{N}_.:-]{0,159}$/u.test(value)) errors.push(label + ': ID chỉ được chứa chữ, số, dấu gạch ngang, gạch dưới, dấu chấm hoặc dấu hai chấm (tối đa 160 ký tự).');
+    };
+    checkId(item.id, 'Bài tập');
+    // Bundled v1 vocabulary and grammar records have no explicit skill.
+    const skill = item.skill ?? (hasText(item.word) && hasText(item.meaning) ? 'vocabulary' : hasText(item.title) && (hasText(item.usage) || hasText(item.formula)) ? 'grammar' : undefined);
+    if (!SKILLS.includes(skill)) errors.push('skill phải là một trong: ' + SKILLS.join(', '));
+    if (item.version !== undefined && (!Number.isInteger(item.version) || item.version < 1)) errors.push('version phải là số nguyên dương.');
+    if (item.level !== undefined && !LEVELS.includes(item.level)) errors.push('level không hợp lệ.');
+    if (item.status !== undefined && !STATUSES.includes(item.status)) errors.push('status phải là approved, draft hoặc rejected.');
+    if (item.part !== undefined) {
+      const parts = { listening: [1, 2, 3, 4], reading: [5, 6, 7], speaking: [1, 2, 3, 4], writing: [1, 2, 3] };
+      if (!Number.isInteger(item.part) || (parts[skill] && !parts[skill].includes(item.part))) errors.push('part không phù hợp với kỹ năng.');
+    }
+    for (const field of TEXT_FIELDS) {
+      if (item[field] !== undefined && (typeof item[field] !== 'string' || item[field].length > 30000)) errors.push(field + ' phải là văn bản tối đa 30000 ký tự.');
+    }
+    for (const field of ['audioUrl', 'imageUrl']) if (!this.isSafeMediaUrl(item[field])) errors.push(field + ' phải là đường dẫn media tương đối hoặc URL http/https hợp lệ.');
+    if (item.examples !== undefined && (!Array.isArray(item.examples) || item.examples.length > 50 || item.examples.some(x => !hasText(x)))) errors.push('examples phải là mảng văn bản không rỗng (tối đa 50 ví dụ).');
+    const validateChoice = (question, label) => {
+      if (!record(question)) { errors.push(label + ' phải là object.'); return; }
+      if (![question.q, question.question, question.transcript, question.audio].some(hasText)) errors.push(label + ' thiếu nội dung câu hỏi.');
+      for (const field of ['q', 'question', 'explanation']) if (question[field] !== undefined && (typeof question[field] !== 'string' || question[field].length > 30000)) errors.push(label + ': ' + field + ' phải là văn bản.');
+      if (!Array.isArray(question.options) || question.options.length < 2 || question.options.length > 6) {
+        errors.push(label + ' cần từ 2 đến 6 lựa chọn.');
       } else {
-        item.questions.forEach((sub, subIdx) => {
-          if (!sub.q || typeof sub.q !== 'string' || !sub.q.trim()) {
-            errors.push(`Câu hỏi con #${subIdx + 1} của ID "${item.id}" thiếu nội dung câu hỏi (q)`);
+        if (question.options.some(x => !hasText(x) || x.length > 10000)) errors.push(label + ': lựa chọn phải là văn bản không rỗng, tối đa 10000 ký tự.');
+        const validOptions = question.options.filter(hasText).map(normalized);
+        if (new Set(validOptions).size !== validOptions.length) errors.push(label + ': có lựa chọn trùng lặp.');
+        if (!Number.isInteger(question.correct) || question.correct < 0 || question.correct >= question.options.length) errors.push(label + ': correct phải là chỉ số nguyên hợp lệ trong options (bắt đầu từ 0).');
+      }
+      if (question.correctAnswer !== undefined && question.correctAnswer !== question.correct) errors.push(label + ': correctAnswer mâu thuẫn với correct; hãy dùng trường correct.');
+    };
+    const isMulti = item.type === 'multi-question' || item.questions !== undefined;
+    const isChoice = item.type === 'single-choice' || item.options !== undefined;
+    const allowedTypes = ['single-choice', 'multi-question', 'flashcard', 'grammar-rule', 'open-response', 'read-aloud', 'describe-picture', 'respond-questions', 'opinion', 'sentence', 'email', 'essay'];
+    if (item.type !== undefined && !allowedTypes.includes(item.type)) errors.push('type không được hỗ trợ.');
+    if (isMulti) {
+      if (item.type && item.type !== 'multi-question') errors.push('Bài có questions phải dùng type multi-question.');
+      if (![item.passage, item.transcript, item.audio, item.audioUrl].some(hasText)) errors.push('Bài nhóm thiếu passage hoặc transcript/audio.');
+      if (!Array.isArray(item.questions) || !item.questions.length || item.questions.length > 50) errors.push('questions phải chứa từ 1 đến 50 câu con.');
+      else {
+        const ids = new Set([item.id]);
+        item.questions.forEach((question, index) => {
+          const label = 'Câu con ' + (index + 1);
+          if (record(question)) {
+            checkId(question.id, label);
+            if (ids.has(question.id)) errors.push(label + ': ID trùng lặp ' + question.id);
+            ids.add(question.id);
           }
-          if (!Array.isArray(sub.options) || sub.options.length < 2) {
-            errors.push(`Câu hỏi con #${subIdx + 1} của ID "${item.id}" phải có tối thiểu 2 phương án lựa chọn`);
-          } else {
-            if (typeof sub.correct !== 'number' || sub.correct < 0 || sub.correct >= sub.options.length) {
-              errors.push(`Câu hỏi con #${subIdx + 1} của ID "${item.id}" có chỉ số đáp án đúng (correct: ${sub.correct}) nằm ngoài danh sách lựa chọn`);
-            }
-          }
+          validateChoice(question, label);
         });
       }
-    } else if (item.type === 'single-choice' || Array.isArray(item.options)) {
-      // Single-choice question
-      const hasPrompt = item.q || item.question || item.audio || item.transcript;
-      if (!hasPrompt || typeof hasPrompt !== 'string' || !hasPrompt.trim()) {
-        errors.push(`Câu hỏi ID "${item.id || 'N/A'}" thiếu nội dung câu hỏi (q/question) hoặc nghe (audio)`);
-      }
-
-      if (!Array.isArray(item.options) || item.options.length < 2) {
-        errors.push(`Câu hỏi ID "${item.id || 'N/A'}" phải có mảng options chứa tối thiểu 2 lựa chọn`);
-      } else {
-        if (typeof item.correct !== 'number' || item.correct < 0 || item.correct >= item.options.length) {
-          errors.push(`Câu hỏi ID "${item.id || 'N/A'}" có chỉ số đáp án đúng (${item.correct}) không hợp lệ (options có ${item.options.length} lựa chọn)`);
-        }
-      }
-    } else if (item.skill === 'speaking') {
-      if (!item.text && !item.sample) {
-        errors.push(`Bài Speaking ID "${item.id || 'N/A'}" thiếu trường text hoặc sample`);
-      }
-    } else if (item.skill === 'writing') {
-      if (!item.question && !item.hint && !item.topicText) {
-        errors.push(`Bài Writing ID "${item.id || 'N/A'}" thiếu đề bài hoặc gợi ý`);
-      }
-    } else if (item.skill === 'vocabulary') {
-      if (!item.word || !item.meaning) {
-        errors.push(`Từ vựng ID "${item.id || 'N/A'}" thiếu từ (word) hoặc nghĩa (meaning)`);
-      }
-    } else if (item.skill === 'grammar') {
-      if (!item.title) {
-        errors.push(`Ngữ pháp ID "${item.id || 'N/A'}" thiếu tiêu đề (title)`);
-      }
-    }
-
-    return {
-      valid: errors.length === 0,
-      errors: errors
-    };
+    } else if (isChoice) validateChoice(item, 'Câu hỏi');
+    else if (skill === 'vocabulary') {
+      if (!hasText(item.word) || !hasText(item.meaning)) errors.push('Từ vựng phải có word và meaning.');
+    } else if (skill === 'grammar') {
+      if (!hasText(item.title) || ![item.usage, item.formula].some(hasText)) errors.push('Bài ngữ pháp cần title và usage hoặc formula.');
+    } else if (skill === 'speaking') {
+      if (!hasText(item.text)) errors.push('Speaking cần đề bài trong trường text.');
+    } else if (skill === 'writing') {
+      if (![item.question, item.hint, item.topicText].some(hasText)) errors.push('Writing cần question, hint hoặc topicText.');
+    } else errors.push('Bài tập thiếu cấu trúc câu hỏi được hỗ trợ.');
+    return { valid: errors.length === 0, errors };
   },
 
-  /**
-   * Validates a batch or full array of questions, checking duplicate IDs
-   * Returns: { valid: boolean, errors: string[], totalChecked: number }
-   */
   validateQuestionBank(items) {
-    if (!Array.isArray(items)) {
-      return { valid: false, errors: ['Ngân hàng câu hỏi phải là một mảng (Array)'], totalChecked: 0 };
-    }
-
-    const allErrors = [];
-    const seenIds = new Set();
-
+    if (!Array.isArray(items) || items.length > 5000) return { valid: false, errors: ['Ngân hàng phải là mảng tối đa 5000 bài tập.'], totalChecked: 0 };
+    const errors = [];
+    const ids = new Set();
     items.forEach((item, index) => {
-      if (!item) {
-        allErrors.push(`Mục tại vị trí [${index}] bị null hoặc rỗng`);
-        return;
-      }
-
-      if (item.id) {
-        if (seenIds.has(item.id)) {
-          allErrors.push(`Phát hiện ID trùng lặp: "${item.id}" tại vị trí [${index}]`);
-        } else {
-          seenIds.add(item.id);
-        }
-      }
-
-      const res = this.validateQuestion(item);
-      if (!res.valid) {
-        res.errors.forEach(err => allErrors.push(`[Mục ${index + 1}] ${err}`));
+      const result = this.validateQuestion(item);
+      errors.push(...result.errors.map(error => '[Bài ' + (index + 1) + '] ' + error));
+      const family = record(item) ? [item, ...(Array.isArray(item.questions) ? item.questions : [])] : [];
+      for (const question of family) {
+        if (!record(question) || typeof question.id !== 'string') continue;
+        if (ids.has(question.id)) errors.push('ID trùng trong ngân hàng: ' + question.id);
+        ids.add(question.id);
       }
     });
-
-    return {
-      valid: allErrors.length === 0,
-      errors: allErrors,
-      totalChecked: items.length
-    };
+    return { valid: errors.length === 0, errors, totalChecked: items.length };
   }
 };

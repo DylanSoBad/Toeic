@@ -1,9 +1,9 @@
 {
   "id": "mock-test-01",
   "version": 1,
-  "title": "Đề thi thử TOEIC #1 (Đề rút gọn 20 câu)",
+  "title": "Bài thi thử #1 · 20 câu luyện tập",
   "durationMinutes": 25,
-  "description": "Đề thi thử rút gọn gồm 20 câu hỏi (10 Listening + 10 Reading) chuẩn hóa theo định dạng TOEIC.",
+  "description": "Bài luyện tập rút gọn, chưa được hiệu chuẩn để quy đổi thành điểm TOEIC.",
   "items": [
     {
       "id": "mock-01-l01",
@@ -18,7 +18,14 @@
         "A man is leaving the office."
       ],
       "correct": 1,
-      "explanation": "\"Reviewing documents at his desk\" = Đang xem xét tài liệu tại bàn."
+      "explanation": "\"Reviewing documents at his desk\" = Đang xem xét tài liệu tại bàn.",
+      "part": 1,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l02",
@@ -32,7 +39,14 @@
         "Yes, at 3."
       ],
       "correct": 1,
-      "explanation": "\"What time\" hỏi giờ → \"At 3:30 PM.\""
+      "explanation": "\"What time\" hỏi giờ → \"At 3:30 PM.\"",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l03",
@@ -46,7 +60,14 @@
         "Yes, I have."
       ],
       "correct": 1,
-      "explanation": "\"Has...been installed\" → câu trả lời phù hợp: \"No, the IT department is still working on it.\""
+      "explanation": "\"Has...been installed\" → câu trả lời phù hợp: \"No, the IT department is still working on it.\"",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l04",
@@ -60,7 +81,14 @@
         "The meeting was long."
       ],
       "correct": 1,
-      "explanation": "\"Could you...\" là yêu cầu → \"Sure, I'll email them...\" là trả lời phù hợp."
+      "explanation": "\"Could you...\" là yêu cầu → \"Sure, I'll email them...\" là trả lời phù hợp.",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l05",
@@ -74,7 +102,14 @@
         "At 5:00 PM."
       ],
       "correct": 0,
-      "explanation": "\"Where\" hỏi nơi chốn → \"On Ms. Davis's desk, please.\""
+      "explanation": "\"Where\" hỏi nơi chốn → \"On Ms. Davis's desk, please.\"",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l06",
@@ -88,7 +123,14 @@
         "Yes, it was interesting."
       ],
       "correct": 1,
-      "explanation": "\"Why\" hỏi lý do → \"I had an urgent client call.\""
+      "explanation": "\"Why\" hỏi lý do → \"I had an urgent client call.\"",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l07",
@@ -102,7 +144,14 @@
         "No, tomorrow morning."
       ],
       "correct": 0,
-      "explanation": "\"Could you check...\" yêu cầu lịch sự → \"Sure, I'll test it right now.\""
+      "explanation": "\"Could you check...\" yêu cầu lịch sự → \"Sure, I'll test it right now.\"",
+      "part": 2,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-l08",
@@ -121,7 +170,8 @@
             "Staff shortage"
           ],
           "correct": 1,
-          "explanation": "\"Due to maintenance work on the main track\"."
+          "explanation": "\"Due to maintenance work on the main track\".",
+          "questionType": "main-idea"
         },
         {
           "id": "mock-01-l08-q2",
@@ -132,7 +182,8 @@
             "10:45 AM"
           ],
           "correct": 1,
-          "explanation": "\"begin boarding at platform 4 at 10:15 AM\"."
+          "explanation": "\"begin boarding at platform 4 at 10:15 AM\".",
+          "questionType": "detail"
         },
         {
           "id": "mock-01-l08-q3",
@@ -143,9 +194,17 @@
             "Discount train vouchers"
           ],
           "correct": 0,
-          "explanation": "\"Complimentary coffee and bottled water are available\"."
+          "explanation": "\"Complimentary coffee and bottled water are available\".",
+          "questionType": "detail"
         }
-      ]
+      ],
+      "part": 4,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "detail",
+      "estimatedTime": 135
     },
     {
       "id": "mock-01-r01",
@@ -159,7 +218,14 @@
         "approval"
       ],
       "correct": 0,
-      "explanation": "Cần động từ quá khứ đơn (yesterday's meeting). \"approved\" là V2/ed."
+      "explanation": "Cần động từ quá khứ đơn (yesterday's meeting). \"approved\" là V2/ed.",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r02",
@@ -173,7 +239,14 @@
         "protectively"
       ],
       "correct": 1,
-      "explanation": "Sau \"wear\" cần danh từ. \"protection\" = sự bảo vệ (protective equipment)."
+      "explanation": "Sau \"wear\" cần danh từ. \"protection\" = sự bảo vệ (protective equipment).",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r03",
@@ -187,7 +260,14 @@
         "whose"
       ],
       "correct": 1,
-      "explanation": "\"which\" thay thế cho \"the factory\" (vật) trong mệnh đề quan hệ không xác định."
+      "explanation": "\"which\" thay thế cho \"the factory\" (vật) trong mệnh đề quan hệ không xác định.",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r04",
@@ -201,7 +281,14 @@
         "would deliver"
       ],
       "correct": 2,
-      "explanation": "Câu điều kiện loại 3: If + had V3, would have V3. \"had delivered\" là đáp án đúng."
+      "explanation": "Câu điều kiện loại 3: If + had V3, would have V3. \"had delivered\" là đáp án đúng.",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r05",
@@ -215,7 +302,14 @@
         "organized"
       ],
       "correct": 0,
-      "explanation": "\"postponed until\" = hoãn lại đến. \"Canceled\" không đi với \"until\" trong ngữ cảnh này."
+      "explanation": "\"postponed until\" = hoãn lại đến. \"Canceled\" không đi với \"until\" trong ngữ cảnh này.",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r06",
@@ -229,7 +323,14 @@
         "compete"
       ],
       "correct": 0,
-      "explanation": "Sau tính từ \"remarkable\" cần một danh từ: \"competence\" (năng lực)."
+      "explanation": "Sau tính từ \"remarkable\" cần một danh từ: \"competence\" (năng lực).",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r07",
@@ -243,7 +344,14 @@
         "signs"
       ],
       "correct": 0,
-      "explanation": "Mệnh đề quá khứ (\"reviewed\") cần động từ quá khứ đơn: \"signed\"."
+      "explanation": "Mệnh đề quá khứ (\"reviewed\") cần động từ quá khứ đơn: \"signed\".",
+      "part": 5,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "grammar",
+      "estimatedTime": 40
     },
     {
       "id": "mock-01-r08",
@@ -261,7 +369,8 @@
             "A change in office hours"
           ],
           "correct": 1,
-          "explanation": "Nội dung là quy trình phê duyệt mua sắm mới (\"approval process for purchases\")."
+          "explanation": "Nội dung là quy trình phê duyệt mua sắm mới (\"approval process for purchases\").",
+          "questionType": "main-idea"
         },
         {
           "id": "mock-01-r08-q2",
@@ -272,7 +381,8 @@
             "Above $10,000"
           ],
           "correct": 1,
-          "explanation": "\"all purchase orders above $5,000 must be approved by the Finance Director\"."
+          "explanation": "\"all purchase orders above $5,000 must be approved by the Finance Director\".",
+          "questionType": "detail"
         },
         {
           "id": "mock-01-r08-q3",
@@ -283,9 +393,17 @@
             "Department heads"
           ],
           "correct": 2,
-          "explanation": "\"Department heads are responsible for communicating this change to their teams\"."
+          "explanation": "\"Department heads are responsible for communicating this change to their teams\".",
+          "questionType": "detail"
         }
-      ]
+      ],
+      "part": 7,
+      "status": "approved",
+      "level": "intermediate",
+      "version": 1,
+      "topic": "business",
+      "questionType": "detail",
+      "estimatedTime": 135
     }
   ]
 }

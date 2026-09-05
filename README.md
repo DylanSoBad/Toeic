@@ -1,174 +1,200 @@
-# TOEIC Master 2.0 - Hệ thống luyện thi TOEIC 4 kỹ năng & Quản lý ngân hàng câu hỏi AI
+# TOEIC Master 3.0
 
-Ứng dụng web học và luyện thi TOEIC toàn diện 4 kỹ năng (Listening, Reading, Speaking, Writing) tích hợp bộ quản lý câu hỏi trực quan, bộ sinh bài tập thông minh (Offline Template + AI Generator) và bảo mật an toàn.
+Ứng dụng học TOEIC cá nhân chạy bằng HTML, CSS, JavaScript modules và Node.js. Nội dung nằm trong JSON; bạn có thể cập nhật qua giao diện quản lý hoặc tạo bài bằng AI rồi duyệt.
 
----
+## Chạy trên máy
 
-## 🌟 Những nâng cấp nổi bật trong Phiên bản 2.0
+Cần Node.js 22 trở lên. Ứng dụng và kiểm thử nghiệp vụ không cần cài thư viện ngoài.
 
-1. **Kiến trúc Mô-đun hóa độc lập (Modular ES Modules)**:
-   - Dữ liệu câu hỏi được tách hoàn toàn ra khỏi mã nguồn JavaScript và tổ chức thành các file JSON chuẩn hóa trong thư mục `data/`.
-   - Logic được chia tách thành các module chuyên biệt: `storage.js`, `progress.js`, `content-loader.js`, `validation.js`, `quiz-engine.js`, `template-generator.js`, `ai-generator.js`, `admin.js`, v.v.
-
-2. **Quản lý nội dung trực quan (Admin Dashboard - "Quản lý nội dung")**:
-   - Thêm, sửa, xóa, nhân bản bài tập trực tiếp ngay trên giao diện web.
-   - Tìm kiếm, lọc theo kỹ năng (Part 1-7, Speaking, Writing, Vocab, Grammar), độ khó và trạng thái.
-   - Import và Export ngân hàng câu hỏi dạng JSON một cách dễ dàng.
-   - **Người dùng không cần phải sửa file JavaScript thủ công mỗi khi thêm nội dung mới!**
-
-3. **Bộ sinh bài tập tự động (Auto Exercise Generator)**:
-   - **Offline Template Generator**: Tự động sinh hàng loạt câu hỏi ngữ pháp (Thì, Bị động, Mệnh đề quan hệ, Word Form, Điều kiện) theo công thức chuẩn TOEIC kèm giải thích mà không cần kết nối mạng hay tốn phí API.
-   - **AI Generator**: Tích hợp gọi AI an toàn (OpenAI GPT-4o-mini hoặc Gemini Flash) qua backend proxy `server.js` (không lộ API key ở frontend).
-   - **Quy trình kiểm duyệt Draft**: Các câu hỏi do AI tạo ra sẽ vào hộp thư nháp để giáo viên/học viên duyệt trước khi đưa vào kho chính.
-   - Chế độ Mock AI có sẵn để kiểm thử sinh bài tập ngay cả khi chưa có API key.
-
-4. **Sửa đổi hệ thống chấm điểm chuẩn TOEIC**:
-   - Sửa triệt để lỗi chấm điểm của các câu hỏi chùm (Part 3, Part 4, Part 6, Part 7) bằng thuật toán Flattened Multi-question scoring.
-   - Thay thế công thức tính điểm tuyến tính ngây thơ bằng biểu đồ chuẩn hóa TOEIC phi tuyến tính chuẩn (thang điểm 10-990) kèm khuyến cáo điểm thi thử.
-   - Cơ chế chống gian lận lặp lại lượt nộp bài để tăng điểm ảo (Anti-score inflation).
-
-5. **Hệ thống theo dõi tiến độ & Chuỗi học tập (Streak & Retention)**:
-   - Tự động ghi nhận chuỗi ngày học liên tục (Streak), cảnh báo đứt chuỗi nếu bỏ qua quá 1 ngày.
-   - Lưu trữ lịch sử bài làm chi tiết (thời gian, kỹ năng, số câu đúng, tỷ lệ chính xác) và vẽ biểu đồ năng lực theo từng kỹ năng.
-
----
-
-## 📂 Cấu trúc dự án
-
-```
-Toeic/
-├── index.html                  # Giao diện chính (Single Page Application)
-├── css/
-│   └── style.css              # Thiết kế giao diện hiện đại, responsive, audio player, admin
-├── js/
-│   ├── app.js                 # Entry point, router và đồng bộ giao diện
-│   └── modules/               # Các module nghiệp vụ độc lập
-│       ├── storage.js         # Quản lý localStorage với versioning & migration
-│       ├── progress.js        # Streak, bài học hàng ngày và lịch sử làm bài
-│       ├── validation.js      # Kiểm tra Schema dữ liệu & Chống mã độc XSS
-│       ├── content-loader.js  # Tải JSON, merge bài tập tùy chỉnh, cache
-│       ├── quiz-engine.js     # Chấm điểm chuẩn TOEIC, multi-question, thang 10-990
-│       ├── template-generator.js # Sinh bài tập ngữ pháp/từ vựng offline
-│       ├── ai-generator.js    # Quản lý luồng gọi AI proxy & duyệt nháp
-│       ├── listening.js       # UI Luyện nghe có Audio Player & transcript
-│       ├── reading.js         # UI Luyện đọc câu đơn & đoạn văn Part 6-7
-│       ├── speaking.js        # UI Luyện nói 4 dạng kèm mẫu câu trả lời
-│       ├── writing.js         # UI Luyện viết câu, email, essay
-│       ├── vocabulary.js      # UI Flashcard từ vựng phản hồi trực quan
-│       ├── grammar.js         # UI Lý thuyết & bài tập ngữ pháp
-│       ├── mock-test.js       # UI Thi thử tính giờ 25 phút & tổng kết
-│       └── admin.js           # Giao diện Dashboard Quản lý câu hỏi & sinh đề
-├── data/                      # Ngân hàng dữ liệu JSON tĩnh
-│   ├── listening/             # part-1.json, part-2.json, part-3.json, part-4.json
-│   ├── reading/               # part-5.json, part-6.json, part-7.json
-│   ├── speaking/              # describe-picture.json, opinion.json, read-aloud.json, respond-questions.json
-│   ├── writing/               # email.json, essay.json, sentence.json
-│   ├── vocabulary/            # business.json, finance.json, health.json, office.json, travel.json
-│   ├── grammar/               # conditionals.json, passive.json, relative-clauses.json, tenses.json, word-form.json
-│   └── mock-tests/            # test-01.json
-├── test/
-│   ├── suite.js               # Bộ kiểm thử tự động (Validation, Scoring, Generator, XSS)
-│   └── server-test.js         # Kiểm thử API server, path traversal security, mock AI
-├── server.js                  # Node.js backend proxy bảo mật & static server
-├── package.json               # Cấu hình dự án & scripts
-├── .env.example               # Mẫu biến môi trường cấu hình API Key AI
-└── README.md                  # Tài liệu hướng dẫn sử dụng
-```
-
----
-
-## 🚀 Cài đặt và Chạy ứng dụng
-
-### Yêu cầu hệ thống
-- Node.js phiên bản 18+ (Dự án được tối ưu và kiểm thử trên Node.js v22).
-
-### 1. Khởi động máy chủ ứng dụng
-Chạy lệnh sau tại thư mục gốc của dự án:
-```bash
+```sh
 npm start
-# hoặc: node server.js
-```
-Mở trình duyệt và truy cập:
-👉 `http://localhost:3000`
-
-### 2. Cấu hình AI Generator (Tùy chọn)
-Nếu bạn muốn sử dụng tính năng tạo câu hỏi tự động bằng AI trực tiếp qua OpenAI:
-1. Tạo file `.env` từ file mẫu `.env.example`:
-   ```bash
-   cp .env.example .env
-   ```
-2. Điền API Key của bạn vào `.env`:
-   ```env
-   OPENAI_API_KEY=sk-...
-   PORT=3000
-   ```
-*(Lưu ý: Nếu không điền API Key, hệ thống vẫn hoạt động bình thường với chế độ **Offline Template Generator** hoặc **Mock AI Mode** hoàn toàn miễn phí).*
-
----
-
-## 🧪 Kiểm thử tự động (Automated Testing)
-
-Dự án đi kèm bộ kiểm thử tự động toàn diện kiểm tra tính hợp lệ của toàn bộ file dữ liệu, thuật toán chấm điểm, và tính năng bảo mật:
-
-```bash
-npm test
-# hoặc: node test/suite.js
 ```
 
-Kết quả kiểm tra bao gồm:
-- ✅ **Static Data Integrity**: Kiểm tra cấu trúc toàn bộ 25+ file JSON câu hỏi trong thư mục `data/`.
-- ✅ **Quiz Engine & Multi-question Scoring**: Kiểm tra phân rã câu hỏi phụ Part 3, 4, 6, 7 và tính toán độ chính xác.
-- ✅ **Anti-Inflation**: Đảm bảo không bị lặp điểm khi nộp bài nhiều lần.
-- ✅ **TOEIC Scale Conversion**: Kiểm tra chuyển đổi điểm theo đường cong chuẩn hóa (10-990).
-- ✅ **Template Generator**: Kiểm tra sinh câu hỏi tự động không trùng lặp và đúng đáp án.
-- ✅ **XSS Protection**: Kiểm tra khả năng lọc sạch mã độc trong câu hỏi và giải thích.
+Mở http://127.0.0.1:3000. Giữ nguyên địa chỉ và cổng trong các lần dùng để đọc đúng dữ liệu trình duyệt đã lưu. localhost và 127.0.0.1 là hai vùng lưu trữ khác nhau.
 
----
+Server mặc định chỉ nghe trên máy này. Có thể đặt PORT và HOST qua biến môi trường. Không mở index.html trực tiếp bằng file:// vì các module cần tải JSON qua HTTP.
 
-## 📝 Định dạng Schema câu hỏi chuẩn
+## Luồng học
 
-### Câu hỏi đơn (Listening Part 1-2, Reading Part 5):
+1. Vào **Mục tiêu của tôi**, nhập điểm mục tiêu, thời gian học mỗi ngày, ngày thi tùy chọn và Part muốn cải thiện.
+2. Làm bài **Kiểm tra đầu vào**, hoặc học theo kế hoạch trước. Số câu được tính từ ngân hàng hiện có, tính riêng từng câu con.
+3. Sau khi nộp, xem độ chính xác, câu sai/chưa trả lời, giải thích và nhóm kiến thức cần ôn.
+4. Mở **Lộ trình học** để học theo ngày, hoàn thành, bỏ qua hoặc dời nhiệm vụ. Bài khảo sát tạo gợi ý cho bảy ngày đầu.
+5. **Sổ câu cần ôn** lấy lần làm gần nhất của mỗi câu. Câu làm đúng sẽ rời danh sách sai; câu bạn lưu thủ công được giữ đến khi bỏ lưu.
+6. **Tiến độ** và **Nhật ký học** phản ánh các lượt làm thật. Kết quả mới cập nhật lại gợi ý đang chờ trong ngày.
+
+Bộ đề xuất hiện dùng quy tắc: độ chính xác, dạng câu sai, số mẫu đã làm, Part người học chọn, lượt học gần đây, thời gian học và ngày thi. Đề xuất có lý do, ưu tiên câu chưa gặp hoặc đã lâu chưa làm. Đây không phải một mô hình AI đánh giá trình độ.
+
+Đánh dấu nhiệm vụ hoàn thành chỉ đổi kế hoạch. Điểm và số câu đúng chỉ tăng khi một lượt làm được nộp. Speaking/Writing được ghi nhận là tự luyện, không phải chấm nói/viết tự động.
+
+## Quản lý nội dung
+
+Vào **Quản lý nội dung → Ngân hàng câu hỏi**:
+
+- Tìm theo từ khóa, lọc kỹ năng, Part, chủ đề, mức độ và trạng thái.
+- Thêm/sửa bài bằng biểu mẫu. Có trường riêng cho Reading/Listening, Speaking, Writing, từ vựng và quy tắc ngữ pháp.
+- Với bài theo đoạn, sửa nội dung đoạn và thêm/xóa/sửa từng câu con, đáp án và giải thích.
+- Xem trước bài; nhân bản sẽ tạo ID mới và lưu bản nháp.
+- Xóa có xác nhận. Xóa bài có sẵn tạo dấu ẩn trong bộ nhớ trình duyệt, không xóa file nguồn.
+- Duyệt bản nháp để bài được đưa vào phần luyện tập.
+
+Nội dung bạn sửa được lưu trong localStorage, ghi đè bài gốc theo ID. Thay đổi Part/kỹ năng/trạng thái sẽ cập nhật đúng nhóm luyện tập. Bản nháp không xuất hiện trong bài luyện.
+
+### Nhập và xuất JSON
+
+**Import JSON** nhận một object bài tập, mảng bài tập hoặc object chứa items/rules. File tối đa 2 MB, mảng tối đa 5.000 bài. Toàn bộ lô được kiểm tra trước khi lưu; lô có lỗi sẽ bị từ chối.
+
+Nếu ID đã tồn tại, phải chủ động bật **Thay thế bài có ID đã tồn tại**. Bài mang nguồn AI/mô phỏng được nhập ở trạng thái draft. **Export kết quả** xuất nhóm đang lọc; **Export tất cả** xuất ngân hàng hiện tại.
+
+Muốn cập nhật bộ dữ liệu gốc cho các trình duyệt khác: xuất JSON, đặt các items vào file tương ứng trong data/ và tải lại ứng dụng. Không có API ghi tùy ý vào ổ đĩa. /api/data/save trả 405; giao diện dùng bộ nhớ trình duyệt và xuất file.
+
+Xuất ngân hàng không bao gồm toàn bộ lịch sử học, hồ sơ hoặc lượt đang làm. Để sao lưu toàn bộ trạng thái cá nhân, sao lưu giá trị khóa toeic_master_data từ vùng lưu trữ của trình duyệt. Chưa có chức năng tài khoản hoặc đồng bộ nhiều thiết bị.
+
+### Schema câu trắc nghiệm
+
 ```json
 {
-  "id": "read-p5-001",
+  "id": "reading-p5-custom-001",
+  "version": 1,
   "skill": "reading",
   "part": 5,
-  "q": "The customer service representative _____ resolved the customer complaint.",
-  "options": ["quick", "quickly", "quickness", "quicker"],
-  "correct": 1,
-  "explanation": "Cần một trạng từ (adverb) bổ nghĩa cho động từ 'resolved'. 'quickly' là trạng từ phù hợp.",
-  "level": "intermediate"
+  "type": "single-choice",
+  "topic": "office",
+  "level": "beginner",
+  "q": "The manager _____ the report yesterday.",
+  "options": ["reviewed", "reviewing", "reviews", "review"],
+  "correct": 0,
+  "explanation": "Yesterday xác định quá khứ; reviewed là động từ quá khứ đơn.",
+  "questionType": "verb-tense",
+  "grammarPoint": "verb-tense",
+  "source": "manual",
+  "status": "approved"
 }
 ```
 
-### Câu hỏi chùm (Listening Part 3-4, Reading Part 6-7):
-```json
-{
-  "id": "read-p6-001",
-  "skill": "reading",
-  "part": 6,
-  "passage": "Thank you for contacting City Center Fitness. We are pleased to inform you that...",
-  "questions": [
-    {
-      "id": "read-p6-001-q1",
-      "q": "Chỗ trống [1]:",
-      "options": ["renovation", "renovate", "renovated", "renovating"],
-      "correct": 0,
-      "explanation": "Vị trí này cần danh từ làm tân ngữ."
-    }
-  ]
-}
+Đáp án correct bắt đầu từ 0. Không dùng correctAnswer thay thế. ID phải duy nhất ở cả cấp bài và câu con. Các lựa chọn phải khác nhau.
+
+Bài theo đoạn dùng type: multi-question, passage hoặc transcript và questions. Mỗi câu con có id, q, options, correct, explanation và metadata riêng. Metadata cấp cha được kế thừa khi chấm bài.
+
+Metadata hỗ trợ: questionType, grammarPoint, vocabularyTopic, trapType, estimatedTime, topic và level. Không suy đoán nguyên nhân tâm lý của lỗi; phân tích chỉ nhóm theo metadata đã có.
+
+Nội dung khác:
+
+- Speaking: skill speaking, part 1–4, text; tùy chọn sample, tips, translation.
+- Writing: skill writing, part 1–3, question/hint/topicText; tùy chọn email, sample.
+- Vocabulary: skill vocabulary, topic, word, meaning; tùy chọn phonetic, example.
+- Grammar: skill grammar, topic, title, formula/usage; tùy chọn examples (mảng chuỗi), keywords.
+
+## Tạo bài offline
+
+Trong **Sinh bài tập mẫu**, chọn chuyên đề, độ khó, số câu và có/không có giải thích. Bộ mẫu hỗ trợ Reading Part 5: thì, từ loại, bị động, điều kiện, từ vựng.
+
+Kho mẫu hữu hạn. Khi số câu phù hợp ít hơn số yêu cầu, giao diện thông báo và chỉ trả số mẫu hiện có; không nhân bản câu để đủ số lượng. Đáp án được trộn và vẫn chấm theo chỉ số đúng mới. Có thể xem trước rồi thêm từng câu hoặc cả lô.
+
+Offline ở đây nghĩa là bộ tạo theo mẫu không gọi AI hoặc dịch vụ mạng; ứng dụng vẫn cần được phục vụ từ Node/static server. Chưa có service worker/PWA để mở toàn bộ app từ cache khi server ngừng chạy.
+
+## Cấu hình AI
+
+Sao chép .env.example thành .env trên máy, điền OPENAI_API_KEY và khởi động lại server.
+
+```env
+PORT=3000
+HOST=127.0.0.1
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4o-mini
+AI_TIMEOUT_MS=25000
 ```
 
----
+Điền key thật trực tiếp trong file .env trên máy. Không đặt key trong mã frontend, JSON bài tập hoặc Git.
 
-## 🛡️ Bảo mật và Kiểm soát lỗi
-- **Proxy AI an toàn**: API Key chỉ được lưu trữ trên môi trường server (`process.env`), không bao giờ gửi về client.
-- **Phòng chống Path Traversal**: Endpoint `/api/data` và trình đọc file tĩnh kiểm tra nghiêm ngặt đường dẫn cơ sở, ngăn chặn truy cập tệp nhạy cảm bên ngoài thư mục được cấp phép.
-- **Sanitize HTML**: Mọi văn bản người dùng nhập hoặc import đều được lọc qua hàm `Validator.sanitizeHtml()`, chống tấn công XSS.
+Trong **Tạo bài tập bằng AI**:
 
----
+1. Chọn kỹ năng, Part/loại bài, chủ đề, độ khó, số bài và ngôn ngữ giải thích.
+2. Có thể mở từ **Tạo bài AI theo điểm yếu** để điền mục tiêu, nhóm câu sai và các đáp án gần đây.
+3. Bấm tạo để gửi yêu cầu tới server.
+4. Xem trước, sửa và duyệt bản nháp. Chỉ bài approved được dùng để luyện.
 
-## 📄 Bản quyền
-Dự án được xây dựng và nâng cấp bởi Đội ngũ Kỹ sư Cao cấp - **TOEIC Master Team**.
-Giấy phép mã nguồn mở: MIT License.
+Hỗ trợ cấu trúc cho Listening, Reading, Speaking, Writing, Vocabulary và Grammar. Part trong Speaking/Writing là loại bài nội bộ của ứng dụng, không phải số câu trên đề thi chính thức.
+
+Backend dùng OpenAI Chat Completions với Structured Outputs, schema riêng theo dạng bài. Có kiểm tra schema và nội dung bắt buộc, giới hạn số lượng, chống ID/lựa chọn trùng và kiểm tra cả lô. Tạo bài từ điểm yếu chỉ gửi các đoạn ngữ cảnh được chọn, không gửi toàn bộ localStorage.
+
+Tham khảo kỹ thuật: [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
+
+### Phân biệt AI thật và mô phỏng
+
+- Thiếu key: API trả lỗi 503 rõ ràng. Không tự chuyển yêu cầu AI thật thành nội dung giả.
+- **Thử nghiệm chế độ Mock**: dữ liệu kiểm thử được ghi source ai-mock và nhãn mô phỏng, đi qua cùng luồng validate/draft/duyệt.
+- AI thật trả source ai, model, generationConfig, createdAt, reviewedAt và validationResult.
+- Validation chứng minh dữ liệu phù hợp cấu trúc, không đảm bảo câu hỏi không mơ hồ hoặc mọi giải thích đều đúng. Cần duyệt nội dung.
+- Chưa xác minh gọi AI thật trong lần triển khai này vì không có API key. Tích hợp được kiểm thử bằng mock HTTP provider và luồng trình duyệt.
+
+Không lưu, ghi log hoặc gửi lại API key cho trình duyệt. Giới hạn đầu vào 32 KB, 1–10 bài/nhóm mỗi lần, 12 lượt/phút trong một tiến trình và timeout tối đa 60 giây. Serverless có thể chạy nhiều tiến trình; bộ giới hạn trong bộ nhớ không phải quota toàn hệ thống. Chưa triển khai xác thực nhiều người dùng; không mở API dùng key trả phí cho Internet trước khi có lớp truy cập phù hợp.
+
+## Audio và chấm điểm
+
+Có thể gán audioUrl/imageUrl tới đường dẫn file hoặc URL HTTP(S) hợp lệ. Ví dụ: audio/part-2-001.mp3. Audio thật dùng HTML audio có phát/tạm dừng và nghe lại; server hỗ trợ byte ranges.
+
+Kho gốc hiện chưa có file audio hoặc ảnh đề bài thật. UI thông báo thiếu audio, transcript mặc định ẩn, việc xem transcript được ghi là hỗ trợ. Bài Listening này giúp luyện nội dung; không đánh giá đầy đủ năng lực nghe. AI tạo transcript/miêu tả ảnh, không tự tạo file audio/ảnh.
+
+Kết quả hiển thị số đúng, sai, bỏ trống, Listening/Reading và độ chính xác. Không công bố điểm quy đổi là điểm TOEIC chính thức. Hàm estimateToeicScore chỉ được giữ để tương thích, là quy đổi minh họa chưa hiệu chuẩn; giao diện mới dùng độ chính xác.
+
+Mock test và khảo sát lưu deadline theo thời gian thực, giữ đáp án khi rời trang/tải lại. Một attempt ID chỉ được ghi nhận một lần. Luyện lại chủ động tạo attempt mới.
+
+## Kiến trúc
+
+```text
+index.html / css/style.css / css/learning.css
+js/app.js                         Điều hướng và đồng bộ giao diện
+js/modules/storage.js             localStorage v3, migration, thông báo lỗi lưu
+js/modules/progress.js            Lịch sử, thống kê, streak, chống ghi trùng
+js/modules/quiz-engine.js         Chấm câu đơn/nhóm, lưu và khôi phục lượt làm
+js/modules/learning.js            Phân tích, đề xuất, kế hoạch và sổ câu sai
+js/modules/personal-learning-ui.js Hồ sơ, trang chủ, khảo sát, kế hoạch, nhật ký
+js/modules/content-loader.js      JSON, validate, ghi đè và xóa cục bộ
+js/modules/validation.js          Kiểm tra dữ liệu dùng chung browser/server
+js/modules/admin.js               Biểu mẫu quản lý, nhập/xuất, duyệt bài
+js/modules/ai-generator.js        Client AI, kiểm tra và lưu nháp
+js/modules/template-generator.js  Ngân hàng mẫu offline
+js/modules/{listening,reading,speaking,writing,vocabulary,grammar,mock-test}.js
+data/                             Nội dung bài tập gốc theo nhóm
+server.js                         Static server và API trên Node
+server/ai-service.js               Schema/prompt/AI service dùng chung
+api/ai-generate.js                 Adapter API cho Vercel
+scripts/build.mjs                 Chỉ đóng gói nội dung công khai vào dist/
+test/                             Kiểm thử nghiệp vụ, server và trình duyệt
+```
+
+Storage v3 chuyển từ toeic_progress hoặc v2 sang cấu trúc mới, giữ tiến độ, bài tùy chỉnh, hồ sơ và trường chưa biết. Không tạo ngày học giả. JSON lỗi được giữ nguyên và báo lỗi; ghi thất bại không được coi là thành công.
+
+Nút **Đặt lại tiến độ học** giữ ngân hàng tùy chỉnh và mục tiêu, không xóa dữ liệu ứng dụng khác cùng origin. Lịch sử và lượt đang làm sẽ mất sau khi bạn xác nhận đặt lại.
+
+Thiết kế tham khảo luồng học của [English Michael](https://englishmichael.com/), giữ nhận diện TOEIC Master. Không nhập hình ảnh, lời chứng thực, mã nguồn hoặc đề thi từ website tham khảo.
+
+## Kiểm thử và build
+
+```sh
+npm test
+npm run build
+```
+
+npm test chạy bộ kiểm tra dữ liệu ban đầu và các test Node: validation/import, migration, chấm câu con, chống nộp trùng, streak, kế hoạch, AI schema/mock, lỗi provider/timeout, private files và path traversal. Test API mở cổng tạm tự đóng, không dùng key thật hoặc gọi OpenAI.
+
+Kiểm thử trình duyệt là tùy chọn, cần Playwright trong môi trường công cụ:
+
+```sh
+npm run test:browser
+```
+
+Nếu module Playwright không nằm trong node_modules của dự án, đặt TOEIC_PLAYWRIGHT_PATH tới module đã cài. Đặt TOEIC_BROWSER_CHANNEL=msedge để dùng Edge có sẵn, hoặc dùng Chromium do Playwright quản lý.
+
+Bộ browser test dùng profile riêng, server cổng tạm và env rỗng, không thay dữ liệu trình duyệt bạn dùng. Có kiểm tra onboarding, khảo sát/reload, sửa bài con/từ vựng, JSON import/export, draft AI, Reading, các tab Grammar, mock timer, Speaking/Writing và layout 390/768/1440 px. Ảnh kiểm tra nằm trong test-results/ (không đưa vào Git).
+
+Build tạo dist/ chỉ gồm tài nguyên công khai. vercel.json trỏ outputDirectory vào dist/, không xuất toàn bộ repository. Chưa thực hiện deploy hoặc xác minh runtime Vercel trong lần triển khai này.
+
+## Giới hạn hiện tại
+
+- Ngân hàng nhỏ; cần tiếp tục biên soạn và duyệt nội dung để phục vụ ôn thi dài hạn.
+- Chưa có tài khoản, đồng bộ nhiều máy, lịch nhắc ngoài ứng dụng hoặc chấm nói/viết tự động.
+- Chưa có audio/ảnh đề thật hoặc TTS. Thêm media hợp lệ vào kho để luyện nghe đúng nghĩa.
+- Bộ mẫu offline hữu hạn; AI thật cần API key và tài khoản có hạn mức.
+- Nội dung cũ chưa có metadata sẽ được hiển thị chung hoặc theo Part; không tự gán nguyên nhân sai không có bằng chứng.

@@ -25,7 +25,8 @@
             "An office renovation"
           ],
           "correct": 1,
-          "explanation": "Người nói thảo luận về lịch làm việc mới (office schedule)."
+          "explanation": "Người nói thảo luận về lịch làm việc mới (office schedule).",
+          "questionType": "main-idea"
         },
         {
           "id": "listening-p3-001-q2",
@@ -36,7 +37,8 @@
             "Next month"
           ],
           "correct": 1,
-          "explanation": "Người phụ nữ nói: \"Starting next Monday\"."
+          "explanation": "Người phụ nữ nói: \"Starting next Monday\".",
+          "questionType": "detail"
         },
         {
           "id": "listening-p3-001-q3",
@@ -47,13 +49,15 @@
             "They work longer hours"
           ],
           "correct": 0,
-          "explanation": "\"We start at 8 instead of 9, but we finish an hour earlier too\" = Bắt đầu sớm hơn và kết thúc sớm hơn."
+          "explanation": "\"We start at 8 instead of 9, but we finish an hour earlier too\" = Bắt đầu sớm hơn và kết thúc sớm hơn.",
+          "questionType": "detail"
         }
       ],
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "estimatedTime": 135
     }
   ]
 }

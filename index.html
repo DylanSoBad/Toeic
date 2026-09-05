@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOEIC Master — Lộ trình TOEIC 0 → 750+</title>
+<meta name="description" content="Luyện TOEIC theo điểm yếu, theo dõi tiến độ và tạo ngân hàng bài tập của riêng bạn.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/learning.css">
 </head>
 <body>
 
-<button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+<button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Mở menu" aria-controls="sidebar" aria-expanded="false">☰</button>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <div class="app-layout">
@@ -32,6 +34,8 @@
       <div class="nav-item" data-page="roadmap" onclick="navigateTo('roadmap')">
         <span class="nav-icon">🗺️</span> Lộ trình học
       </div>
+      <div class="nav-item" data-page="review" onclick="navigateTo('review')"><span class="nav-icon">↺</span> Sổ câu cần ôn</div>
+      <div class="nav-item" data-page="journal" onclick="navigateTo('journal')"><span class="nav-icon">▤</span> Nhật ký học</div>
 
       <div class="nav-section-label">Kỹ năng</div>
       <div class="nav-item" data-page="listening" onclick="navigateTo('listening')">
@@ -83,133 +87,19 @@
   <main class="main-content">
 
     <!-- PAGE: HOME -->
-    <div class="page active" id="page-home">
-      <div class="fade-up">
-        <h1 class="page-title">Xin chào! Sẵn sàng chinh phục TOEIC?</h1>
-        <p class="page-desc">Lộ trình cá nhân hóa từ cơ bản đến 750+ TOEIC. Mỗi ngày một bước, tiến bộ rõ rệt.</p>
-      </div>
-
-      <!-- Stats -->
-      <div class="card-grid card-grid-4 fade-up stagger-1" style="margin-bottom:32px">
-        <div class="card stat-card">
-          <div class="stat-value" id="homeTotalLessons">0</div>
-          <div class="stat-label">Bài đã học</div>
-        </div>
-        <div class="card stat-card">
-          <div class="stat-value" id="homeStreak">0</div>
-          <div class="stat-label">Ngày liên tiếp</div>
-        </div>
-        <div class="card stat-card">
-          <div class="stat-value" id="homeVocab">0</div>
-          <div class="stat-label">Từ vựng đã học</div>
-        </div>
-        <div class="card stat-card">
-          <div class="stat-value" id="homeAccuracy">—</div>
-          <div class="stat-label">Độ chính xác</div>
-        </div>
-      </div>
-
-      <!-- Quick Start -->
-      <h2 class="section-title fade-up stagger-2">Bắt đầu nhanh</h2>
-      <div class="card-grid card-grid-2 fade-up stagger-3" style="margin-bottom:32px">
-        <div class="card" style="cursor:pointer;border-left:4px solid var(--accent)" onclick="navigateTo('listening')">
-          <div style="display:flex;align-items:center;gap:16px">
-            <div style="font-size:32px">🎧</div>
-            <div>
-              <div style="font-weight:600;font-size:16px">Luyện Listening</div>
-              <div style="font-size:13px;color:var(--text-secondary)">Part 1-4 · Mô phỏng đề thi thật</div>
-            </div>
-          </div>
-        </div>
-        <div class="card" style="cursor:pointer;border-left:4px solid var(--info)" onclick="navigateTo('reading')">
-          <div style="display:flex;align-items:center;gap:16px">
-            <div style="font-size:32px">📖</div>
-            <div>
-              <div style="font-weight:600;font-size:16px">Luyện Reading</div>
-              <div style="font-size:13px;color:var(--text-secondary)">Part 5-7 · Đọc hiểu & ngữ pháp</div>
-            </div>
-          </div>
-        </div>
-        <div class="card" style="cursor:pointer;border-left:4px solid var(--success)" onclick="navigateTo('vocabulary')">
-          <div style="display:flex;align-items:center;gap:16px">
-            <div style="font-size:32px">📚</div>
-            <div>
-              <div style="font-weight:600;font-size:16px">Học từ vựng</div>
-              <div style="font-size:13px;color:var(--text-secondary)">Flashcard · Theo chủ đề TOEIC</div>
-            </div>
-          </div>
-        </div>
-        <div class="card" style="cursor:pointer;border-left:4px solid var(--warning)" onclick="navigateTo('mocktest')">
-          <div style="display:flex;align-items:center;gap:16px">
-            <div style="font-size:32px">📋</div>
-            <div>
-              <div style="font-weight:600;font-size:16px">Thi thử Mock Test</div>
-              <div style="font-size:13px;color:var(--text-secondary)">Đề thi đầy đủ · chấm điểm ngay</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TOEIC Overview -->
-      <h2 class="section-title fade-up stagger-4">TOEIC là gì?</h2>
-      <div class="card fade-up stagger-5" style="margin-bottom:24px">
-        <p style="font-size:15px;line-height:1.8;color:var(--text-secondary)">
-          <strong style="color:var(--text-primary)">TOEIC (Test of English for International Communication)</strong> là bài kiểm tra tiếng Anh giao tiếp quốc tế, được hơn 14.000 tổ chức tại 150 quốc gia sử dụng. Bài thi đánh giá năng lực tiếng Anh trong môi trường công sở và kinh doanh.
-        </p>
-        <div class="card-grid card-grid-2" style="margin-top:20px;gap:12px">
-          <div style="padding:16px;background:var(--bg-secondary);border-radius:var(--radius-md)">
-            <div style="font-weight:600;margin-bottom:4px">TOEIC 2 kỹ năng (L&R)</div>
-            <div style="font-size:13px;color:var(--text-secondary)">Listening (45 câu, 45 phút) + Reading (55 câu, 75 phút). Tổng: 10-990 điểm.</div>
-          </div>
-          <div style="padding:16px;background:var(--bg-secondary);border-radius:var(--radius-md)">
-            <div style="font-weight:600;margin-bottom:4px">TOEIC 4 kỹ năng</div>
-            <div style="font-size:13px;color:var(--text-secondary)">Thêm Speaking (28 câu, 20 phút) + Writing (15 câu, 60 phút). Mỗi kỹ năng: 0-200 điểm.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Score Guide -->
-      <h2 class="section-title fade-up stagger-5">Mục tiêu điểm số</h2>
-      <div class="card fade-up stagger-6" style="overflow:hidden;padding:0">
-        <table style="width:100%;border-collapse:collapse;font-size:14px">
-          <thead>
-            <tr style="background:var(--bg-secondary)">
-              <th style="padding:12px 20px;text-align:left;font-weight:600">Mức điểm</th>
-              <th style="padding:12px 20px;text-align:left;font-weight:600">Trình độ</th>
-              <th style="padding:12px 20px;text-align:left;font-weight:600">Mô tả</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 20px"><span class="badge badge-success">250-450</span></td>
-              <td style="padding:12px 20px;font-weight:500">Cơ bản</td>
-              <td style="padding:12px 20px;color:var(--text-secondary)">Hiểu giao tiếp cơ bản, đọc văn bản đơn giản</td>
-            </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 20px"><span class="badge badge-info">450-650</span></td>
-              <td style="padding:12px 20px;font-weight:500">Trung cấp</td>
-              <td style="padding:12px 20px;color:var(--text-secondary)">Giao tiếp công việc hàng ngày, hiểu báo cáo</td>
-            </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 20px"><span class="badge badge-accent">650-750</span></td>
-              <td style="padding:12px 20px;font-weight:500">Trung cao cấp</td>
-              <td style="padding:12px 20px;color:var(--text-secondary)">Giao tiếp trôi chảy, hiểu văn bản phức tạp</td>
-            </tr>
-            <tr style="border-top:1px solid var(--border)">
-              <td style="padding:12px 20px"><span class="badge badge-warning">750-990</span></td>
-              <td style="padding:12px 20px;font-weight:500">Nâng cao</td>
-              <td style="padding:12px 20px;color:var(--text-secondary)">Thành thạo, hiểu sắc thái, diễn đạt chính xác</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div class="page active" id="page-home"><div id="learningHome" aria-live="polite"></div></div>
+    <div class="page" id="page-profile"><div id="learningProfile"></div></div>
+    <div class="page" id="page-practice"><div id="learningSession"></div></div>
+    <div class="page" id="page-review"><div id="learningReview"></div></div>
+    <div class="page" id="page-journal"><div id="learningJournal"></div></div>
 
     <!-- PAGE: ROADMAP -->
     <div class="page" id="page-roadmap">
+      <div id="learningPlan"></div>
+      <details class="learn-syllabus"><summary>Tham khảo nội dung nền tảng theo giai đoạn</summary>
       <div class="fade-up">
         <h1 class="page-title">Lộ trình học TOEIC</h1>
-        <p class="page-desc">Lộ trình được thiết kế từ 0 đến 750+, chia thành 4 giai đoạn. Mỗi giai đoạn tập trung vào kỹ năng và kiến thức cụ thể.</p>
+        <p class="page-desc">Ba nhóm kiến thức tham khảo. Kế hoạch cá nhân được hiển thị ở phía trên.</p>
       </div>
 
       <div class="level-cards fade-up stagger-1">
@@ -233,6 +123,7 @@
       <div id="roadmapContent" class="fade-up stagger-2">
         <!-- Roadmap items rendered by JS -->
       </div>
+      </details>
     </div>
 
     <!-- PAGE: LISTENING -->
@@ -309,9 +200,9 @@
       </div>
 
       <div class="tabs fade-up stagger-1" id="writingTabs">
-        <button class="tab active" onclick="switchWritingType(1)">Viết câu (Q6-7)</button>
-        <button class="tab" onclick="switchWritingType(2)">Email (Q8)</button>
-        <button class="tab" onclick="switchWritingType(3)">Bài luận (Q9)</button>
+        <button class="tab active" onclick="switchWritingType(1)">Viết câu</button>
+        <button class="tab" onclick="switchWritingType(2)">Email</button>
+        <button class="tab" onclick="switchWritingType(3)">Bài luận</button>
       </div>
 
       <div id="writingContent" class="fade-up stagger-2">
@@ -368,6 +259,7 @@
 
     <!-- PAGE: PROGRESS -->
     <div class="page" id="page-progress">
+      <div id="learningAnalysis"></div>
       <div class="fade-up">
         <h1 class="page-title">📊 Tiến độ học tập</h1>
         <p class="page-desc">Theo dõi quá trình học TOEIC của bạn. Dữ liệu được lưu trên trình duyệt.</p>
@@ -432,7 +324,7 @@
       </div>
 
       <div class="fade-up stagger-6" style="margin-top:24px;text-align:center">
-        <button class="btn btn-outline btn-sm" onclick="if(confirm('Xóa tất cả dữ liệu học tập?')){localStorage.clear();location.reload()}">Đặt lại dữ liệu</button>
+        <button class="btn btn-outline btn-sm" onclick="resetLearningProgress()">Đặt lại tiến độ học</button>
       </div>
     </div>
 
@@ -444,6 +336,7 @@
   </main>
 </div>
 
+<div id="learningToast" class="learning-toast" role="status" aria-live="polite"></div>
 <script type="module" src="js/app.js"></script>
 </body>
 </html>

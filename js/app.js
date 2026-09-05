@@ -14,6 +14,7 @@ import { VocabUI } from './modules/vocabulary.js';
 import { GrammarUI } from './modules/grammar.js';
 import { MockTestUI } from './modules/mock-test.js';
 import { AdminUI } from './modules/admin.js';
+import { PersonalLearningUI } from './modules/personal-learning-ui.js';
 
 // State variables for subtabs
 let currentListeningPart = 1;
@@ -25,6 +26,7 @@ let currentGrammarTopic = 'tenses';
 
 /* === NAVIGATION === */
 export function navigateTo(pageId) {
+  if (!document.getElementById('page-' + pageId)) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
@@ -35,8 +37,13 @@ export function navigateTo(pageId) {
   if (targetNav) targetNav.classList.add('active');
 
   if (window.innerWidth <= 768) {
-    toggleSidebar();
+    document.getElementById('sidebar')?.classList.remove('open');
+    document.getElementById('overlay')?.classList.remove('show');
+    document.querySelector('.mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
   }
+  document.querySelectorAll('audio').forEach(audio => audio.pause());
+  document.querySelector('.main-content')?.scrollTo({ top: 0 });
+  document.querySelectorAll('.nav-item').forEach(nav => nav.setAttribute('aria-current', nav === targetNav ? 'page' : 'false'));
 
   // Update daily progress on any navigation
   updateDailyProgress();
@@ -45,10 +52,16 @@ export function navigateTo(pageId) {
   switch (pageId) {
     case 'home':
       updateHomeStats();
+      PersonalLearningUI.renderHome();
       break;
     case 'roadmap':
       selectLevel(1);
+      PersonalLearningUI.renderPlan();
       break;
+    case 'profile': PersonalLearningUI.renderProfile(); break;
+    case 'practice': PersonalLearningUI.renderSession(); break;
+    case 'review': PersonalLearningUI.renderReview(); break;
+    case 'journal': PersonalLearningUI.renderJournal(); break;
     case 'listening':
       ListeningUI.init(currentListeningPart);
       break;
@@ -63,15 +76,18 @@ export function navigateTo(pageId) {
       break;
     case 'vocabulary':
       VocabUI.init(currentVocabTopic);
+      refreshTopicTabs('vocabulary');
       break;
     case 'grammar':
-      GrammarUI.init(currentGrammarTopic);
+      switchGrammarTopic(currentGrammarTopic);
+      refreshTopicTabs('grammar');
       break;
     case 'mocktest':
       MockTestUI.init();
       break;
     case 'progress':
       updateProgressPage();
+      PersonalLearningUI.renderAnalysis();
       break;
     case 'admin':
       AdminUI.init();
@@ -84,6 +100,7 @@ export function toggleSidebar() {
   const overlay = document.getElementById('overlay');
   if (sidebar) sidebar.classList.toggle('open');
   if (overlay) overlay.classList.toggle('show');
+  document.querySelector('.mobile-menu-btn')?.setAttribute('aria-expanded', String(sidebar?.classList.contains('open') || false));
 }
 
 /* === STATS & PROGRESS TRACKING === */
@@ -167,7 +184,7 @@ export function updateProgressPage() {
             <td style="padding:10px 14px; color:var(--text-secondary);">${timeStr}</td>
             <td style="padding:10px 14px; font-weight:500;">
               <span class="badge ${h.skill === 'listening' ? 'badge-info' : 'badge-accent'}">
-                ${h.skill.toUpperCase()} ${h.part ? `P${h.part}` : ''}
+                ${Validator.sanitizeHtml(String(h.skill || 'quiz').toUpperCase())} ${h.part ? `P${Validator.sanitizeHtml(String(h.part))}` : ''}
               </span>
             </td>
             <td style="padding:10px 14px; text-align:center; font-weight:600;">${h.correct} / ${h.total}</td>
@@ -276,7 +293,20 @@ export function switchGrammarTopic(topic) {
     const match = tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(topic);
     tab.classList.toggle('active', !!match);
   });
-  GrammarUI.init(currentGrammarTopic);
+  const aliases = { relative: 'relative-clauses', condition: 'conditionals', wordform: 'word-form' };
+  GrammarUI.init(aliases[currentGrammarTopic] || currentGrammarTopic);
+}
+
+async function refreshTopicTabs(skill) {
+  const parent = document.getElementById(skill === 'vocabulary' ? 'vocabTabs' : 'grammarTabs');
+  const builtIn = skill === 'vocabulary' ? ['business','office','travel','finance','health'] : ['tenses','passive','relative-clauses','conditionals','word-form'];
+  const topics = await ContentLoader.getTopics(skill);
+  parent?.querySelectorAll('[data-custom-topic]').forEach(el => el.remove());
+  topics.filter(topic => !builtIn.includes(topic)).forEach(topic => {
+    const button = document.createElement('button'); button.className = 'tab'; button.textContent = topic; button.dataset.customTopic = topic;
+    button.onclick = () => { (skill === 'vocabulary' ? switchVocabTopic : switchGrammarTopic)(topic); parent.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab === button)); };
+    parent.append(button);
+  });
 }
 
 /* === ROADMAP DATA & LOGIC === */
@@ -348,11 +378,30 @@ window.switchWritingType = switchWritingType;
 window.switchVocabTopic = switchVocabTopic;
 window.switchGrammarTopic = switchGrammarTopic;
 window.selectLevel = selectLevel;
+window.resetLearningProgress = () => {
+  if (!confirm('Đặt lại tiến độ và lịch sử? Ngân hàng bài tập và mục tiêu của bạn được giữ.')) return;
+  const data = Storage.get();
+  const keep = { customExercises: data.customExercises, deletedExerciseIds: data.deletedExerciseIds, profile: data.profile };
+  // Clear only this app's progress; never clear unrelated origin storage.
+  const reset = Storage.migrate({}, 1);
+  Storage.save({ ...reset, ...keep });
+  location.reload();
+};
 
 // Initial application boot
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   Storage.init();
   updateDailyProgress();
   updateHomeStats();
   selectLevel(1);
+  document.querySelectorAll('.nav-item').forEach(nav => {
+    nav.setAttribute('role', 'button'); nav.tabIndex = 0;
+    nav.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); nav.click(); } });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && document.getElementById('sidebar')?.classList.contains('open')) toggleSidebar();
+  });
+  Storage.subscribe(() => { updateDailyProgress(); updateHomeStats(); if (document.getElementById('page-progress')?.classList.contains('active')) updateProgressPage(); });
+  try { await PersonalLearningUI.init(); }
+  catch (error) { const box = document.getElementById('learningHome'); if (box) { box.textContent = 'Không tải được nội dung: ' + error.message + '. Hãy tải lại trang hoặc mở Quản lý nội dung.'; } }
 });

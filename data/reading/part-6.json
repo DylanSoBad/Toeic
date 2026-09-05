@@ -23,7 +23,8 @@
             "Moreover"
           ],
           "correct": 1,
-          "explanation": "\"Specifically\" = Cụ thể là — dùng để giải thích chi tiết thêm."
+          "explanation": "\"Specifically\" = Cụ thể là — dùng để giải thích chi tiết thêm.",
+          "questionType": "vocabulary"
         },
         {
           "id": "reading-p6-001-q2",
@@ -35,7 +36,9 @@
             "reduction"
           ],
           "correct": 0,
-          "explanation": "\"have + V3\" — thì hiện tại hoàn thành. \"have reduced\" = đã giảm."
+          "explanation": "\"have + V3\" — thì hiện tại hoàn thành. \"have reduced\" = đã giảm.",
+          "questionType": "verb-tense",
+          "grammarPoint": "verb-tense"
         },
         {
           "id": "reading-p6-001-q3",
@@ -47,13 +50,16 @@
             "easiest"
           ],
           "correct": 1,
-          "explanation": "\"make it + comparative\" — \"make it easier\" = làm cho dễ hơn."
+          "explanation": "\"make it + comparative\" — \"make it easier\" = làm cho dễ hơn.",
+          "questionType": "comparison",
+          "grammarPoint": "comparison"
         }
       ],
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "estimatedTime": 135
     }
   ]
 }

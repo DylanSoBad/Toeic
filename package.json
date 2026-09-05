@@ -1,12 +1,14 @@
 {
   "name": "toeic-master",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "TOEIC Master - Ứng dụng học TOEIC 4 kỹ năng tích hợp bộ sinh bài tập AI & Quản lý ngân hàng câu hỏi",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node test/suite.js"
+    "test": "node test/suite.js && node --test test/*.test.js",
+    "test:browser": "node test/browser-check.cjs",
+    "build": "node scripts/build.mjs"
   },
   "keywords": [
     "toeic",

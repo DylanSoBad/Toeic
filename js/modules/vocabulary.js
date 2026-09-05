@@ -19,7 +19,7 @@ export const VocabUI = {
     const container = document.getElementById('vocabContent');
     if (!container) return;
 
-    container.innerHTML = `<div class="loading-spinner"><div class="spinner"></div><p>Đang tải từ vựng chủ đề ${currentTopic}...</p></div>`;
+    container.innerHTML = `<div class="loading-spinner"><div class="spinner"></div><p>Đang tải từ vựng chủ đề ${Validator.sanitizeHtml(currentTopic)}...</p></div>`;
 
     const data = await ContentLoader.getVocabData(currentTopic);
     currentWords = data ? data.items || [] : [];
@@ -80,7 +80,7 @@ export const VocabUI = {
 
         <!-- Action Controls -->
         <div class="vocab-actions">
-          <button class="btn ${isLearned ? 'btn-success' : 'btn-primary'}" id="btnMarkLearned">
+          <button class="btn ${isLearned ? 'btn-success' : 'btn-primary'}" id="btnMarkLearned" ${isLearned ? 'disabled' : ''}>
             ${isLearned ? '✓ Đã thuộc từ này' : '★ Đánh dấu đã thuộc'}
           </button>
         </div>
@@ -112,9 +112,12 @@ export const VocabUI = {
     const btnMark = document.getElementById('btnMarkLearned');
     if (btnMark) {
       btnMark.onclick = () => {
-        Progress.recordWordLearned(wordItem.word);
-        btnMark.className = 'btn btn-success';
-        btnMark.innerHTML = '✓ Đã thuộc từ này';
+        try {
+          Progress.recordWordLearned(wordItem.word);
+          btnMark.className = 'btn btn-success';
+          btnMark.innerHTML = '✓ Đã thuộc từ này';
+          btnMark.disabled = true;
+        } catch (error) { alert(error.message); }
       };
     }
 

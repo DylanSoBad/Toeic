@@ -2,11 +2,13 @@
  * Grammar Module - Renders Grammar Lessons, Formulas & Examples
  */
 import { ContentLoader } from './content-loader.js';
-import { Progress } from './progress.js';
+import { Progress, localDateKey } from './progress.js';
 import { Validator } from './validation.js';
 
 export const GrammarUI = {
+  startedAt: 0,
   async init(topic = 'tenses') {
+    this.startedAt = Date.now();
     const container = document.getElementById('grammarContent');
     if (!container) return;
 
@@ -92,9 +94,13 @@ export const GrammarUI = {
     const btnDone = document.getElementById('btnMarkGrammarDone');
     if (btnDone) {
       btnDone.onclick = () => {
-        Progress.completeLesson('grammar');
-        btnDone.className = 'btn btn-success btn-sm';
-        btnDone.innerHTML = '✓ Đã ghi nhận bài học!';
+        try {
+          Progress.completeLesson('grammar', { id: `grammar-${data.topic || data.title}-${localDateKey()}`,
+            topic: data.topic, durationSeconds: Math.max(0, Math.round((Date.now() - this.startedAt) / 1000)) });
+          btnDone.className = 'btn btn-success btn-sm';
+          btnDone.innerHTML = '✓ Đã ghi nhận bài học hôm nay!';
+          btnDone.disabled = true;
+        } catch (error) { alert(error.message); }
       };
     }
   }

@@ -25,7 +25,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p1-002",
@@ -49,7 +51,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p1-003",
@@ -73,7 +77,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p1-004",
@@ -97,7 +103,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p1-005",
@@ -121,7 +129,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p1-006",
@@ -145,7 +155,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "photograph",
+      "estimatedTime": 40
     }
   ]
 }

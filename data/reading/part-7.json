@@ -22,7 +22,8 @@
             "To request vacation applications"
           ],
           "correct": 1,
-          "explanation": "Mục đích thông báo về chương trình khám sức khỏe định kỳ (annual health check-up program)."
+          "explanation": "Mục đích thông báo về chương trình khám sức khỏe định kỳ (annual health check-up program).",
+          "questionType": "main-idea"
         },
         {
           "id": "reading-p7-001-q2",
@@ -33,7 +34,8 @@
             "At a local gym"
           ],
           "correct": 1,
-          "explanation": "Địa điểm là City Medical Center, located at 450 Health Avenue."
+          "explanation": "Địa điểm là City Medical Center, located at 450 Health Avenue.",
+          "questionType": "detail"
         },
         {
           "id": "reading-p7-001-q3",
@@ -44,7 +46,8 @@
             "Call the HR department"
           ],
           "correct": 1,
-          "explanation": "\"fasting is required for 8 hours before blood tests\" = nhịn ăn 8 tiếng."
+          "explanation": "\"fasting is required for 8 hours before blood tests\" = nhịn ăn 8 tiếng.",
+          "questionType": "detail"
         },
         {
           "id": "reading-p7-001-q4",
@@ -55,13 +58,15 @@
             "By visiting in person only"
           ],
           "correct": 1,
-          "explanation": "\"calling 555-0123 or visiting our intranet page\" = qua điện thoại hoặc intranet."
+          "explanation": "\"calling 555-0123 or visiting our intranet page\" = qua điện thoại hoặc intranet.",
+          "questionType": "detail"
         }
       ],
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "estimatedTime": 180
     }
   ]
 }

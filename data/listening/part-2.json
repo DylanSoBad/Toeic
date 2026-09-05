@@ -24,7 +24,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p2-002",
@@ -47,7 +49,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p2-003",
@@ -70,7 +74,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p2-004",
@@ -93,7 +99,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p2-005",
@@ -116,7 +124,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     },
     {
       "id": "listening-p2-006",
@@ -139,7 +149,9 @@
       "source": "manual",
       "status": "approved",
       "createdAt": "2026-09-01T00:00:00.000Z",
-      "updatedAt": "2026-09-01T00:00:00.000Z"
+      "updatedAt": "2026-09-01T00:00:00.000Z",
+      "questionType": "question-response",
+      "estimatedTime": 40
     }
   ]
 }
