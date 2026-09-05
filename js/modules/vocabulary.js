@@ -34,7 +34,7 @@ export const VocabUI = {
     if (!currentWords || currentWords.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-icon">📚</div>
+          <div class="empty-icon"></div>
           <h3>Chưa có từ vựng nào trong chủ đề này</h3>
         </div>
       `;
@@ -53,22 +53,22 @@ export const VocabUI = {
             <span class="quiz-counter">Từ ${currentIndex + 1} / ${currentWords.length}</span>
           </div>
           <button class="btn btn-secondary btn-sm" id="btnShuffleVocab">
-            🔀 Trộn từ
+             Trộn từ
           </button>
         </div>
 
         <!-- Flashcard -->
         <div class="flashcard-wrapper">
-          <div class="flashcard ${isFlipped ? 'flipped' : ''}" id="flashcardElement">
+          <div class="flashcard ${isFlipped ? 'flipped' : ''}" id="flashcardElement" role="button" tabindex="0" aria-label="Lật thẻ: xem nghĩa và ví dụ" aria-pressed="${isFlipped}">
             <!-- Front -->
-            <div class="flashcard-face flashcard-front">
+            <div class="flashcard-face flashcard-front" aria-hidden="${isFlipped}">
               <span class="card-hint">Bấm để lật thẻ</span>
               <div class="word-main">${Validator.sanitizeHtml(wordItem.word)}</div>
               <div class="word-phonetic">${Validator.sanitizeHtml(wordItem.phonetic || '')}</div>
-              <div class="card-action-hint">👆 Xem nghĩa & câu ví dụ</div>
+              <div class="card-action-hint"> Xem nghĩa & câu ví dụ</div>
             </div>
             <!-- Back -->
-            <div class="flashcard-face flashcard-back">
+            <div class="flashcard-face flashcard-back" aria-hidden="${!isFlipped}">
               <span class="card-hint">Bấm để lật lại</span>
               <div class="word-meaning">${Validator.sanitizeHtml(wordItem.meaning || '')}</div>
               <div class="word-example">
@@ -81,7 +81,7 @@ export const VocabUI = {
         <!-- Action Controls -->
         <div class="vocab-actions">
           <button class="btn ${isLearned ? 'btn-success' : 'btn-primary'}" id="btnMarkLearned" ${isLearned ? 'disabled' : ''}>
-            ${isLearned ? '✓ Đã thuộc từ này' : '★ Đánh dấu đã thuộc'}
+            ${isLearned ? '✓ Đã thuộc từ này' : ' Đánh dấu đã thuộc'}
           </button>
         </div>
 
@@ -106,6 +106,13 @@ export const VocabUI = {
       card.onclick = () => {
         isFlipped = !isFlipped;
         card.classList.toggle('flipped', isFlipped);
+        card.setAttribute('aria-pressed', String(isFlipped));
+        card.setAttribute('aria-label', isFlipped ? 'Lật thẻ: xem từ tiếng Anh' : 'Lật thẻ: xem nghĩa và ví dụ');
+        card.querySelector('.flashcard-front').setAttribute('aria-hidden', String(isFlipped));
+        card.querySelector('.flashcard-back').setAttribute('aria-hidden', String(!isFlipped));
+      };
+      card.onkeydown = event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); }
       };
     }
 

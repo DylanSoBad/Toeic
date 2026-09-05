@@ -14,7 +14,7 @@ let browser, server, page;
   server = createAppServer({ env: {} }); await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
   browser = await playwright.chromium.launch({ headless: true, ...(process.env.TOEIC_BROWSER_CHANNEL ? { channel: process.env.TOEIC_BROWSER_CHANNEL } : {}) });
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, locale: 'vi-VN', timezoneId: 'Asia/Ho_Chi_Minh' });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce', locale: 'vi-VN', timezoneId: 'Asia/Ho_Chi_Minh' });
   page = await context.newPage(); page.setDefaultTimeout(12000);
   const errors = []; const dialogs = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -23,6 +23,47 @@ let browser, server, page;
   await page.goto(base, { waitUntil: 'domcontentloaded' }); await page.locator('#learningHome h1').waitFor();
   await page.screenshot({ path: 'test-results/home-desktop.png', fullPage: true, animations: 'disabled' });
   console.log('PASS desktop home renders real empty state');
+
+  await nav(page, 'vocabulary');
+  const flashcard = page.locator('#flashcardElement');
+  await flashcard.waitFor();
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const side of ['front', 'back']) {
+      await page.evaluate(() => document.fonts.ready);
+      const geometry = await page.evaluate(() => {
+        const card = document.getElementById('flashcardElement').getBoundingClientRect();
+        const action = document.getElementById('btnMarkLearned').getBoundingClientRect();
+        return { height: card.height, gap: action.top - card.bottom };
+      });
+      assert.ok(geometry.height >= 319.9);
+      assert.ok(geometry.gap >= 20);
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      await page.locator('.vocab-container').screenshot({ path: `test-results/vocab-${width}-${side}.png`, animations: 'disabled' });
+      await flashcard.focus(); await page.keyboard.press('Enter');
+      assert.equal(await flashcard.getAttribute('aria-pressed'), String(side === 'front'));
+    }
+  }
+  await page.locator('#btnNextVocab').click();
+  assert.equal(await flashcard.getAttribute('aria-pressed'), 'false');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  console.log('PASS vocabulary card height, no overlapping controls, keyboard flip and mobile layouts');
+
+  await nav(page, 'reading');
+  await page.locator('.answer-sheet .option-btn').first().waitFor();
+  await page.locator('.answer-sheet .option-btn').first().click();
+  assert.equal(await page.locator('.answer-sheet .option-btn.selected').count(), 1);
+  assert.equal(await page.locator('.answer-sheet .option-btn').first().getAttribute('aria-pressed'), 'true');
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const boxes = await page.locator('.answer-sheet .option-btn').evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, height: r.height }; }));
+    assert.ok(boxes.every(box => box.height >= 60));
+    assert.ok(boxes.slice(1).every((box, i) => box.top - boxes[i].bottom >= 10));
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.locator('.answer-sheet').screenshot({ path: `test-results/answer-sheet-${width}.png`, animations: 'disabled' });
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  console.log('PASS answer sheet spacing, selected state and desktop/mobile layouts');
 
   await nav(page, 'profile');
   await page.locator('[name=targetScore]').fill('800'); await page.locator('[name=dailyMinutes]').fill('20');

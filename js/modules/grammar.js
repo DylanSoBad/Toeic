@@ -27,7 +27,7 @@ export const GrammarUI = {
     if (!rules || rules.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-icon">📝</div>
+          <div class="empty-icon"></div>
           <h3>Chưa có bài học ngữ pháp cho chủ đề này</h3>
         </div>
       `;

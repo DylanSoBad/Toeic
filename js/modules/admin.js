@@ -50,7 +50,7 @@ export const AdminUI = {
       <div class="admin-dashboard card animate-fadeIn">
         <div class="admin-header">
           <div>
-            <h2>⚙️ Quản lý nội dung & Bộ sinh bài tập</h2>
+            <h2> Quản lý nội dung & Bộ sinh bài tập</h2>
             <p class="admin-subtitle">Quản lý ngân hàng câu hỏi, tạo bài tập tự động bằng AI hoặc theo mẫu có sẵn.</p>
           </div>
           <div class="admin-stats-summary">
@@ -62,13 +62,13 @@ export const AdminUI = {
         <!-- Sub-tabs Navigation -->
         <div class="admin-tabs-nav">
           <button class="admin-tab-btn ${activeSubTab === 'bank' ? 'active' : ''}" data-subtab="bank">
-            📁 Ngân hàng câu hỏi (${allQuestions.length})
+             Ngân hàng câu hỏi (${allQuestions.length})
           </button>
           <button class="admin-tab-btn ${activeSubTab === 'template' ? 'active' : ''}" data-subtab="template">
-            ⚡ Sinh bài tập mẫu (Offline)
+             Sinh bài tập mẫu (Offline)
           </button>
           <button class="admin-tab-btn ${activeSubTab === 'ai' ? 'active' : ''}" data-subtab="ai">
-            🤖 Tạo bài tập bằng AI
+             Tạo bài tập bằng AI
           </button>
         </div>
 
@@ -127,7 +127,7 @@ export const AdminUI = {
       <div class="bank-controls-bar">
         ${ContentLoader.getLoadErrors().length ? `<div role="alert" class="error-alert-box">Một số bộ dữ liệu chưa tải được: ${ContentLoader.getLoadErrors().map(error => Validator.sanitizeHtml(error.path + ': ' + error.message)).join('<br>')}</div>` : ''}
         <div class="filter-group">
-          <input type="text" class="form-input search-input" id="bankSearchInput" placeholder="🔍 Tìm kiếm câu hỏi, từ khóa, ID..." value="${Validator.sanitizeHtml(searchKeyword)}">
+          <input type="text" class="form-input search-input" id="bankSearchInput" placeholder=" Tìm kiếm câu hỏi, từ khóa, ID..." value="${Validator.sanitizeHtml(searchKeyword)}">
 
           <select class="form-select" id="bankFilterSkill">
             <option value="all" ${filterSkill === 'all' ? 'selected' : ''}>Tất cả kỹ năng</option>
@@ -157,10 +157,10 @@ export const AdminUI = {
         </div>
 
         <div class="action-buttons-group">
-          <button class="btn btn-primary btn-sm" id="btnAddNewExercise">➕ Thêm câu hỏi</button>
-          <button class="btn btn-secondary btn-sm" id="btnImportJson">📥 Import JSON</button>
-          <button class="btn btn-secondary btn-sm" id="btnExportFilteredJson">📤 Export kết quả</button>
-          <button class="btn btn-secondary btn-sm" id="btnExportAllJson">💾 Export tất cả</button>
+          <button class="btn btn-primary btn-sm" id="btnAddNewExercise"> Thêm câu hỏi</button>
+          <button class="btn btn-secondary btn-sm" id="btnImportJson"> Import JSON</button>
+          <button class="btn btn-secondary btn-sm" id="btnExportFilteredJson"> Export kết quả</button>
+          <button class="btn btn-secondary btn-sm" id="btnExportAllJson"> Export tất cả</button>
         </div>
       </div>
 
@@ -209,10 +209,10 @@ export const AdminUI = {
                   <td style="text-align: right;">
                     <div class="item-actions">
                       ${item.status !== 'approved' ? `<button class="btn-icon" data-action="approve" data-id="${Validator.sanitizeHtml(item.id)}" title="Duyệt bài này">✓</button>` : ''}
-                      <button class="btn-icon" data-action="preview" data-id="${item.id}" title="Xem trước & làm thử">👁️</button>
-                      <button class="btn-icon" data-action="edit" data-id="${item.id}" title="Chỉnh sửa">✏️</button>
-                      <button class="btn-icon" data-action="duplicate" data-id="${item.id}" title="Nhân bản">📋</button>
-                      <button class="btn-icon danger" data-action="delete" data-id="${item.id}" title="Xóa">🗑️</button>
+                      <button class="btn-icon" data-action="preview" data-id="${item.id}" title="Xem trước & làm thử"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/></svg></button>
+                      <button class="btn-icon" data-action="edit" data-id="${item.id}" title="Chỉnh sửa"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 16 12-12 4 4L8 20l-5 1 1-5m9-9 4 4"/></svg></button>
+                      <button class="btn-icon" data-action="duplicate" data-id="${item.id}" title="Nhân bản"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 8h13v13H8zM16 5V2H2v14h3"/></svg></button>
+                      <button class="btn-icon danger" data-action="delete" data-id="${item.id}" title="Xóa"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></svg></button>
                     </div>
                   </td>
                 </tr>
@@ -329,7 +329,7 @@ export const AdminUI = {
     return `
       <div class="template-gen-container">
         <div class="template-gen-header card">
-          <h3>⚡ Bộ sinh bài tập theo mẫu (Hoạt động hoàn toàn Offline)</h3>
+          <h3> Bộ sinh bài tập theo mẫu (Hoạt động hoàn toàn Offline)</h3>
           <p>Bộ mẫu hỗ trợ Reading Part 5 về ngữ pháp và từ vựng. Mỗi câu trong một lần tạo là duy nhất; nếu kho mẫu ít hơn số yêu cầu, hệ thống trả đúng số mẫu hiện có. Đây là bộ quy tắc offline, không phải AI.</p>
 
           <div class="template-form-grid">
@@ -363,7 +363,7 @@ export const AdminUI = {
 
             <div class="form-group" style="display:flex; align-items:flex-end;">
               <button class="btn btn-primary" id="btnGenerateTemplate" style="width:100%;">
-                ⚡ Sinh bài tập ngay
+                 Sinh bài tập ngay
               </button>
             </div>
           </div>
@@ -421,7 +421,7 @@ export const AdminUI = {
                 </div>
               `).join('')}
             </div>
-            <div class="item-exp">💡 <strong>Giải thích:</strong> ${Validator.sanitizeHtml(it.explanation)}</div>
+            <div class="item-exp"> <strong>Giải thích:</strong> ${Validator.sanitizeHtml(it.explanation)}</div>
             <div class="item-footer-actions">
               <button class="btn btn-primary btn-sm btn-save-single-gen" data-idx="${idx}">
                 ✓ Thêm câu này vào ngân hàng
@@ -474,7 +474,7 @@ export const AdminUI = {
       <div class="ai-gen-container">
         <div class="ai-gen-card card">
           <div class="ai-card-header">
-            <h3>🤖 Bộ tạo bài tập bằng Trí tuệ Nhân tạo (AI Generator)</h3>
+            <h3> Bộ tạo bài tập bằng Trí tuệ Nhân tạo (AI Generator)</h3>
             <p>Tạo bài luyện tập mới và lưu bản nháp để bạn duyệt. Cần kiểm tra đáp án và tính rõ ràng của nội dung; kiểm tra schema không bảo đảm AI trả lời đúng. Mock chỉ dùng thử luồng, không gọi AI thật.</p>
             ${Object.keys(generationContext).length ? '<p class="badge badge-info">Đã nhận ngữ cảnh luyện tập từ kết quả học của bạn.</p>' : ''}
           </div>
@@ -550,10 +550,10 @@ export const AdminUI = {
 
           <div class="ai-action-bar">
             <button class="btn btn-primary btn-lg" id="btnSubmitAiGenerate">
-              ✨ Bắt đầu sinh câu hỏi bằng AI
+               Bắt đầu sinh câu hỏi bằng AI
             </button>
             <button class="btn btn-secondary btn-lg" id="btnTestAiMock">
-              🧪 Thử nghiệm chế độ Mock (Không cần API key)
+               Thử nghiệm chế độ Mock (Không cần API key)
             </button>
           </div>
 
@@ -605,7 +605,7 @@ export const AdminUI = {
                 </div>
 
                 <div class="explanation-box visible">
-                  <span class="exp-icon">💡</span>
+                  <span class="exp-icon"></span>
                   <div class="exp-text">${Array.isArray(draft.options) ? `<strong>Đáp án đúng:</strong> ${String.fromCharCode(65 + draft.correct)} - ${Validator.sanitizeHtml(draft.options[draft.correct])}` : `<strong>${draft.questions ? `Nhóm ${draft.questions.length} câu hỏi` : 'Bài tự luyện / kiến thức'}.</strong><button class="btn btn-secondary btn-sm btn-preview-draft" data-id="${Validator.sanitizeHtml(draft.id)}">Xem đầy đủ nội dung & bài mẫu</button>`}<br><strong>Giải thích:</strong> ${Validator.sanitizeHtml(draft.explanation || '')}</div>
                 </div>
 
@@ -614,10 +614,10 @@ export const AdminUI = {
                     ✓ Duyệt câu này
                   </button>
                   <button class="btn btn-secondary btn-sm btn-edit-draft" data-id="${draft.id}">
-                    ✏️ Sửa trước khi duyệt
+                     Sửa trước khi duyệt
                   </button>
                   <button class="btn btn-secondary btn-sm btn-discard-draft" data-id="${draft.id}">
-                    🗑️ Bỏ qua
+                     Bỏ qua
                   </button>
                 </div>
               </div>
@@ -778,7 +778,7 @@ export const AdminUI = {
       const isMulti = item.type === 'multi-question' || Array.isArray(item.questions);
       let html = `
         <div class="modal-header">
-          <h3>👁️ Xem trước câu hỏi: <code>${Validator.sanitizeHtml(item.id)}</code></h3>
+          <h3> Xem trước câu hỏi: <code>${Validator.sanitizeHtml(item.id)}</code></h3>
           <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
         </div>
         <div class="modal-body">
@@ -835,7 +835,7 @@ export const AdminUI = {
                   </div>
                 `).join('')}
               </div>
-              ${sub.explanation ? `<div class="explanation-box visible">💡 ${Validator.sanitizeHtml(sub.explanation)}</div>` : ''}
+              ${sub.explanation ? `<div class="explanation-box visible"> ${Validator.sanitizeHtml(sub.explanation)}</div>` : ''}
             </div>
           `;
         });
@@ -859,7 +859,7 @@ export const AdminUI = {
               }).join('')}
             </div>
           </div>
-          ${item.explanation ? `<div class="explanation-box visible mt-3">💡 <strong>Giải thích:</strong> ${Validator.sanitizeHtml(item.explanation)}</div>` : ''}
+          ${item.explanation ? `<div class="explanation-box visible mt-3"> <strong>Giải thích:</strong> ${Validator.sanitizeHtml(item.explanation)}</div>` : ''}
         `;
       }
 
@@ -996,7 +996,7 @@ export const AdminUI = {
 
     content.innerHTML = `
       <div class="modal-header">
-        <h3>📥 Import câu hỏi từ JSON</h3>
+        <h3> Import câu hỏi từ JSON</h3>
         <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
       </div>
       <div class="modal-body">
