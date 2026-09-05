@@ -28,6 +28,10 @@ function getDefaultState() {
 const listeners = [];
 
 export const Storage = {
+  init() {
+    return this.get();
+  },
+
   get() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
